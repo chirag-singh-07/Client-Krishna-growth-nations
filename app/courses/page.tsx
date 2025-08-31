@@ -12,7 +12,7 @@ import {
 import { CoursesData } from "@/data/CoursesData";
 import { ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const categoryName = [
   "Development Courses",
@@ -30,7 +30,7 @@ const categoryName = [
 ];
 
 const CoursesPage = () => {
-
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     try {
@@ -92,7 +92,7 @@ const CoursesPage = () => {
     <>
       <div className="min-h-screen ">
         <div className="max-w-9xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          {/* Main hading  */}
+          {/* Main heading  */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               📚 Explore Our Courses
@@ -103,14 +103,30 @@ const CoursesPage = () => {
             </p>
           </div>
 
+          {/* Search Bar */}
+          <div className="flex justify-center mb-12">
+            <input
+              type="text"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search courses..."
+              className="w-full max-w-md px-5 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 text-lg shadow-sm"
+            />
+          </div>
+
           <div className="space-y-12 px-4 sm:px-6 lg:px-8 mb-24 ">
             {categoryName.map((categoryTitle) => {
               // Derive raw category value from display name
               const rawCategory = categoryTitle.replace(" Courses", "");
 
-              // Filter courses for this category
+              // Filter courses for this category, and apply search filter
               const filteredCourses = CoursesData.filter(
-                (course) => course.category === rawCategory
+                (course) =>
+                  course.category === rawCategory &&
+                  (
+                    course.title.toLowerCase().includes(search.toLowerCase()) ||
+                    course.smallDescription.toLowerCase().includes(search.toLowerCase())
+                  )
               );
 
               // Skip if no course in this category
