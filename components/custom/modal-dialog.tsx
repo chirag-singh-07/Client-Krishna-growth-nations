@@ -246,11 +246,37 @@ export default function ModalDialog({
                     />
                   </div>
                 </div>
+
+                {/* Phone Number Input */}
+                <div className="group">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-semibold text-gray-700 mb-3"
+                  >
+                    Phone Number
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Phone className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                    </div>
+                    <input
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) =>
+                        handleInputChange("phone", e.target.value)
+                      }
+                      className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 outline-none bg-gray-50/50 hover:bg-white hover:border-gray-300 text-gray-900 placeholder-gray-500"
+                      placeholder="Enter your phone number"
+                      maxLength={15}
+                    />
+                  </div>
+                </div>
               </div>
 
               <button
                 onClick={handleContinue}
-                disabled={!formData.name.trim() || !formData.email.trim()}
+                disabled={!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transform cursor-pointer"
               >
                 Continue to Next Step
