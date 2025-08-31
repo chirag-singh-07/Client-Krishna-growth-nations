@@ -101,13 +101,13 @@ const HomePage = () => {
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Link href={"/offer"}>
+                <Link href={"/courses/stock-market-crash-course"}>
                   <Button
                     size="lg"
                     variant="outline"
-                    className="text-lg px-8 py-6 bg-transparent"
+                    className="text-lg px-8 py-6 bg-transparent border-2 border-yellow-400 text-yellow-700 font-bold shadow-md transition-all duration-200 hover:bg-yellow-100 hover:border-yellow-500 hover:text-yellow-900 hover:shadow-yellow-400/60 hover:shadow-[0_0_16px_4px_rgba(250,204,21,0.5)] focus:ring-4 focus:ring-yellow-200"
                   >
-                    Bundle Offer - 85% Off
+                    Stock Market Course - Bundle Offer
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
@@ -216,12 +216,12 @@ const HomePage = () => {
             {courses.map((course, index) => (
               <Card
                 key={index}
-                className="group border-0 shadow-md p-2 m-0"
+                className="group border-0 shadow-md p-2 m-0 transition-all duration-300 transform hover:scale-102 hover:-translate-y-1 hover:shadow-[0_12px_36px_0_rgba(0,0,0,0.28)] cursor-pointer"
                 style={{ minHeight: '180px' }}
               >
                 <CardHeader className="space-y-1 p-2 pb-0">
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-r ${course.color} flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-200`}
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-r ${course.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-200`}
                   >
                     {course.icon}
                   </div>
