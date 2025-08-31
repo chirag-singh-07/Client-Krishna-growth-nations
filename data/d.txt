@@ -348,7 +348,7 @@ export const courseSkillsMap: Record<string, string[]> = {
       textColor: 'text-orange-600'
     }
   ],
-  certificateIncluded: true,
+  
   rating: 4.5,
   totalReviews: 8242,
   totalStudents: '50K+',

@@ -22,18 +22,18 @@ const Navbar = () => {
             >
               Courses
             </Link>
-            <a
-              href="#about"
+            <Link
+              href="/#about"
               className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               About
-            </a>
-            <a
-              href="#testimonials"
+            </Link>
+            <Link
+              href="/#testimonials"
               className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Reviews
-            </a>
+            </Link>
 
             <Link href="/offer">
               <Button className="bg-gradient-to-r cursor-pointer from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">

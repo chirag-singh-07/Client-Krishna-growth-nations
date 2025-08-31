@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +12,8 @@ import {
 import { CoursesData } from "@/data/CoursesData";
 import { ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const categoryName = [
   "Development Courses",
@@ -28,6 +31,64 @@ const categoryName = [
 ];
 
 const CoursesPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    try {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      // support aliasing (reviews -> testimonials)
+      const aliasMap: Record<string, string> = {
+        "#reviews": "#testimonials",
+        "#review": "#testimonials",
+      };
+      const normalized = aliasMap[hash] || hash;
+      const id = normalized.replace("#", "");
+
+      // if not on root, navigate to root with normalized hash via a full navigation
+      if (window.location.pathname !== "/") {
+        // build explicit absolute URL like: https://host.tld/#testimonials
+        const target = `${window.location.origin}/#${id}`;
+        // debug - helps local troubleshooting
+        // eslint-disable-next-line no-console
+        console.debug("courses -> redirect to", target, "from", window.location.href);
+        // replace current entry so back doesn't stay on /courses#... page
+        try {
+          window.location.replace(target);
+        } catch (err) {
+          // fallback to assignment if replace is somehow blocked
+          // eslint-disable-next-line no-console
+          console.warn("location.replace failed, falling back to href assign", err);
+          window.location.href = target;
+        }
+        // as a second-layer fallback (some environments may ignore replace), assign after short delay
+        setTimeout(() => {
+          if (window.location.href !== target) {
+            window.location.href = target;
+          }
+        }, 250);
+        return;
+      }
+
+      // otherwise, we're already on root - try to scroll to the element
+      const tryScroll = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          return true;
+        }
+        return false;
+      };
+
+      if (!tryScroll()) {
+        const t = setTimeout(tryScroll, 300);
+        return () => clearTimeout(t);
+      }
+    } catch (e) {
+      // ignore in SSR
+    }
+  }, []);
   return (
     <>
       <div className="min-h-screen ">
@@ -157,9 +218,6 @@ const CoursesPage = () => {
                 View All Courses
               </Button>
             </div>
-            <p className="text-sm text-purple-200">
-              30-day money-back guarantee • No credit card required for trial
-            </p>
           </div>
         </div>
       </section>

@@ -48,6 +48,18 @@ const OfferModelDialog = ({ isOpen, onClose }: OfferModelDialogProps) => {
 
   const handleConfirm = async () => {
     setCheckBtn(true);
+
+    // support a local mock mode for testing without real payments
+    const isMock = process.env.NEXT_PUBLIC_RAZORPAY_MOCK === "1";
+    if (isMock) {
+      handleClose();
+      setTimeout(() => {
+        handleSendOfferCourseEmail();
+        window.location.href = `/payment-success`;
+      }, 700);
+      return;
+    }
+
     handleClose();
 
     // console.log()
@@ -63,9 +75,16 @@ const OfferModelDialog = ({ isOpen, onClose }: OfferModelDialogProps) => {
         }),
       });
 
-      const data = await res.json();
+      let data: any = null;
+      try {
+        data = await res.json();
+      } catch (e) {
+        const text = await res.text();
+        throw new Error(`Razorpay API returned non-JSON: ${res.status} ${text}`);
+      }
       if (!res.ok) {
-        throw new Error(data.message || "Something went wrong");
+        const msg = data?.error || data?.message || JSON.stringify(data);
+        throw new Error(`Razorpay API error: ${res.status} ${msg}`);
       }
       const storedUser = localStorage.getItem("userData");
       const userData = storedUser

@@ -2,7 +2,7 @@ import { Trophy } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-16">
+    <footer className="bg-gray-900 text-white py-6">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -50,8 +50,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Growth Nation. All rights reserved.</p>
+        <div className="border-t border-gray-800 mt-2 pt-2 text-center text-gray-400">
+          <p>&copy; 2025 Growth Nation. All rights reserved.</p>
         </div>
       </div>
     </footer>

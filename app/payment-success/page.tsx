@@ -61,8 +61,7 @@ export default function PaymentSuccessPage() {
               immediately once you access the course materials.
             </p>
             <p className="text-sm text-gray-500">
-              Your Affiliated Certificate with IIIT Bhubaneswar(Government
-              University) will be available in next 48 hours.
+              Your course access details are available and you can start learning immediately.
             </p>
           </div>
         </div>

@@ -32,7 +32,7 @@ export const handleSendOfferCourseEmail = async () => {
   const storedUser = localStorage.getItem("userData");
   const userData = storedUser
     ? JSON.parse(storedUser)
-    : { name: "Johan", email: "johan@gmail.com" };
+    : { name: "Anurag", email: "anurag.kumar6240@gmail.com" };
 
   try {
     await fetch("/api/send-offer-email", {

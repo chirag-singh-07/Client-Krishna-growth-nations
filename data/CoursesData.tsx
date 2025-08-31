@@ -69,13 +69,16 @@ export type CoursesDataType = {
   endLabel: string; // e.g "Web Developer, "Full Stack Developer", "Digital Marketer", etc.
   price: number;
   salePrice: number;
+  isFree?: boolean;
+  priceLabel?: string;
+  priceBadgeColor?: string;
   Url: string;
   Url2?: string;
 
   rating?: number; // e.g., 4.9
   totalReviews?: number; // e.g., 12847
   totalStudents?: string; // e.g., "25K+"
-  certificateIncluded?: boolean; // true if cert is included
+  // certificateIncluded removed — certifications are not offered
 
   features?: string[]; // What this course includes (videos, resources, etc.)
   guarantee?: string; // e.g., "30-Day Money-Back Guarantee"
@@ -153,7 +156,7 @@ export const CoursesData: CoursesDataType[] = [
         textColor: getTextColor(),
       },
     ],
-    certificateIncluded: true,
+    
     rating: getRandomRating(),
     totalReviews: getRandomReviewCount(),
     totalStudents: getRandomStudentCount(),
@@ -242,7 +245,7 @@ export const CoursesData: CoursesDataType[] = [
       "Responsive Design",
       "Web Accessibility",
     ],
-    certificateIncluded: true,
+    
   },
 
   {
@@ -273,7 +276,7 @@ export const CoursesData: CoursesDataType[] = [
       "Automation",
       "Monitoring",
     ],
-    certificateIncluded: true,
+    
   },
   {
     id: "ios-app-dev",
@@ -302,7 +305,7 @@ export const CoursesData: CoursesDataType[] = [
       "App Navigation",
       "Simulator Testing",
     ],
-    certificateIncluded: true,
+    
     endLabel: "iOS Developer",
   },
   {
@@ -325,7 +328,7 @@ export const CoursesData: CoursesDataType[] = [
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    certificateIncluded: true,
+    
     skills: [
       "Game Design Principles",
       "Asset Management",
@@ -363,7 +366,7 @@ export const CoursesData: CoursesDataType[] = [
       "APIs and Web Scraping",
       "Automation Scripts",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Python Developer",
   },
   {
@@ -393,8 +396,47 @@ export const CoursesData: CoursesDataType[] = [
       "Network Security Basics",
       "Troubleshooting Techniques",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Network Engineer",
+  },
+  {
+    id: "stock-market-crash-course",
+    title: "Stock Market Crash Course",
+    smallDescription:
+      "Master stock market basics, technical analysis, trading strategies, and risk management in a practical 4-week crash course.",
+    longDescription: `The Stock Market Crash Course is a focused, hands-on program that teaches you how markets work, how to read charts, identify trends, and execute high-probability trades while protecting your capital. Over 4 weeks you'll learn technical analysis, candlestick patterns, support/resistance, indicators, position sizing, and risk management. The course emphasizes practical strategies for intraday and short-term swing trading with real examples and watchlists. No prior experience required — perfect for beginners who want a fast, effective introduction to trading.
+
+This course includes live demonstrations, downloadable trading templates, and a starter workbook to help you implement strategies immediately.`,
+  time: "4 weeks",
+  level: "beginner",
+  Url: "https://drive.google.com/file/d/1qObxmwhX5uThgtciCUSu7KpyNfnNwSol/view?usp=sharing",
+  price: 1499,
+  salePrice: 899,
+  isFree: true,
+  priceLabel: "Free",
+  priceBadgeColor: "from-green-500 to-green-600",
+  icon: FiTrendingUp,
+    category: "Other",
+    IconColor: getRandomIconColor(),
+    totalReviews: getRandomReviewCount(),
+    totalStudents: getRandomStudentCount(),
+    rating: getRandomRating(),
+    guarantee: getRandomGuarantee(),
+    features: [
+      "Live strategy sessions",
+      "Trading templates and workbooks",
+      "Practical chart examples",
+  "Risk management templates",
+  "90+ course links",
+    ],
+    skills: [
+      "Technical Analysis",
+      "Price Action",
+      "Risk Management",
+      "Intraday & Swing Strategies",
+    ],
+    
+    endLabel: "Trader",
   },
   {
     id: "computer-basic",
@@ -423,7 +465,7 @@ export const CoursesData: CoursesDataType[] = [
       "Internet Navigation",
       "Digital Communication",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Computer User",
   },
   {
@@ -453,7 +495,7 @@ export const CoursesData: CoursesDataType[] = [
       "React Hooks",
       "Performance Optimization",
     ],
-    certificateIncluded: true,
+    
     endLabel: "React Developer",
   },
   {
@@ -483,7 +525,7 @@ export const CoursesData: CoursesDataType[] = [
       "Exception Handling",
       "File I/O",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Java Developer",
   },
   {
@@ -506,7 +548,7 @@ export const CoursesData: CoursesDataType[] = [
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    certificateIncluded: true,
+    
     skills: [
       "Java Syntax",
       "OOP Concepts",
@@ -537,7 +579,7 @@ export const CoursesData: CoursesDataType[] = [
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    certificateIncluded: true,
+    
     skills: [
       "HTML/CSS Basics",
       "JavaScript Fundamentals",
@@ -569,7 +611,7 @@ export const CoursesData: CoursesDataType[] = [
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    certificateIncluded: true,
+    
     skills: [
       "Component Architecture",
       "Data Binding",
@@ -599,7 +641,7 @@ export const CoursesData: CoursesDataType[] = [
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    certificateIncluded: true,
+    
     skills: [
       "ASP .NET Core Fundamentals",
       "MVC Architecture",
@@ -635,7 +677,7 @@ export const CoursesData: CoursesDataType[] = [
       "Basic Algorithms",
       "Debugging Techniques",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Junior Developer",
   },
   {
@@ -666,7 +708,7 @@ export const CoursesData: CoursesDataType[] = [
       "Performance Tracking",
       "User Engagement Techniques",
     ],
-    certificateIncluded: true,
+    
     endLabel: "ASO Specialist",
   },
   {
@@ -697,7 +739,7 @@ export const CoursesData: CoursesDataType[] = [
       "Performance Tracking",
       "A/B Testing",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Facebook Ads Specialist",
     subCourses: [
       {
@@ -762,7 +804,7 @@ export const CoursesData: CoursesDataType[] = [
       "Funnel Strategies",
       "Analytics Fundamentals",
     ],
-    certificateIncluded: true,
+    
   },
   {
     title: "Instagram Marketing",
@@ -793,7 +835,7 @@ export const CoursesData: CoursesDataType[] = [
       "Instagram Ads",
       "Analytics and Insights",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Instagram Marketing Specialist",
   },
   {
@@ -825,7 +867,7 @@ export const CoursesData: CoursesDataType[] = [
       "Email Campaigns",
       "Analytics and Reporting",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Digital Marketing Specialist",
   },
   {
@@ -856,7 +898,7 @@ export const CoursesData: CoursesDataType[] = [
       "Typography Basics",
       "Asset Creation",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Branding Specialist",
   },
   {
@@ -887,7 +929,7 @@ export const CoursesData: CoursesDataType[] = [
       "Budget Management",
       "Performance Tracking",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Google Ads Specialist",
   },
   {
@@ -917,7 +959,7 @@ export const CoursesData: CoursesDataType[] = [
       "Analytics and Reporting",
       "Ad Campaign Management",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Social Media Marketing Specialist",
   },
   {
@@ -947,7 +989,7 @@ export const CoursesData: CoursesDataType[] = [
       "Automation Techniques",
       "Performance Analytics",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Email Marketing Specialist",
   },
   {
@@ -978,7 +1020,7 @@ export const CoursesData: CoursesDataType[] = [
       "Traffic Generation",
       "Conversion Optimization",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Affiliate Marketing Specialist",
   },
   {
@@ -1010,7 +1052,7 @@ export const CoursesData: CoursesDataType[] = [
       "Building Rapport",
       "Closing Techniques",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Sales Closer",
   },
   {
@@ -1040,7 +1082,7 @@ export const CoursesData: CoursesDataType[] = [
       "Technical SEO",
       "Analytics and Reporting",
     ],
-    certificateIncluded: true,
+    
     endLabel: "SEO Specialist",
     subCourses: [
       {
@@ -1106,7 +1148,7 @@ export const CoursesData: CoursesDataType[] = [
       "Board Structuring",
       "Analytics Tracking",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Pinterest SEO Specialist",
   },
   {
@@ -1136,7 +1178,7 @@ export const CoursesData: CoursesDataType[] = [
       "Color Theory",
       "Digital Design Tools",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Logo Designer",
   },
   {
@@ -1167,7 +1209,7 @@ export const CoursesData: CoursesDataType[] = [
       "Color Correction",
       "Graphic Design Fundamentals",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Photoshop Designer",
   },
   {
@@ -1198,7 +1240,7 @@ export const CoursesData: CoursesDataType[] = [
       "Color Theory",
       "Illustration Fundamentals",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Digital Illustrator",
   },
   {
@@ -1228,7 +1270,7 @@ export const CoursesData: CoursesDataType[] = [
       "Animation Principles",
       "Rendering and Exporting",
     ],
-    certificateIncluded: true,
+    
     endLabel: "3D Animator",
 
     subCourses: [
@@ -1279,7 +1321,7 @@ export const CoursesData: CoursesDataType[] = [
       "3D Modeling Basics",
       "Rendering and Visualization",
     ],
-    certificateIncluded: true,
+    
     endLabel: "AutoCAD Designer",
   },
   {
@@ -1309,7 +1351,7 @@ export const CoursesData: CoursesDataType[] = [
       "Color Management",
       "Layout Design Techniques",
     ],
-    certificateIncluded: true,
+    
     endLabel: "CorelDraw Designer",
     subCourses: [
       {
@@ -1358,7 +1400,7 @@ export const CoursesData: CoursesDataType[] = [
       "Visual Storytelling",
       "Brand Identity Creation",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Graphic Designer",
     subCourses: [
       {
@@ -1406,7 +1448,7 @@ export const CoursesData: CoursesDataType[] = [
       "SEO Optimization",
       "Audience Engagement",
     ],
-    certificateIncluded: true,
+    
     endLabel: "YouTube Creator",
   },
   {
@@ -1436,7 +1478,7 @@ export const CoursesData: CoursesDataType[] = [
       "Sponsorship Strategies",
       "Revenue Diversification",
     ],
-    certificateIncluded: true,
+    
     endLabel: "YouTube Monetization Specialist",
   },
   {
@@ -1466,7 +1508,7 @@ export const CoursesData: CoursesDataType[] = [
       "Data-Driven Decisions",
       "Brand Building",
     ],
-    certificateIncluded: true,
+    
     endLabel: "YouTube Domination Specialist",
   },
   {
@@ -1497,7 +1539,7 @@ export const CoursesData: CoursesDataType[] = [
       "Content Structuring",
       "Editing and Proofreading",
     ],
-    certificateIncluded: true,
+    
     endLabel: "Content Writer",
   },
   {
@@ -1527,7 +1569,7 @@ export const CoursesData: CoursesDataType[] = [
       "IAM Security Practices",
       "Cloud Architecture Design",
     ],
-    certificateIncluded: true,
+    
     endLabel: "AWS Certified Practitioner",
     subCourses: [
       {
@@ -1575,9 +1617,9 @@ export const CoursesData: CoursesDataType[] = [
       "Vulnerability Assessment",
       "Penetration Testing",
       "Ethical Hacking Tools",
-    ],
-    certificateIncluded: true,
-    endLabel: "Certified Ethical Hacker",
+  ],
+    
+  endLabel: "Certified Ethical Hacker",
   },
   {
     title: `Ethical Hacking Course 2025`,
@@ -1606,9 +1648,8 @@ export const CoursesData: CoursesDataType[] = [
       "Penetration Testing Techniques",
       "Vulnerability Management",
       "Cyber Defense Strategies",
-    ],
-    certificateIncluded: true,
-    endLabel: "Certified Ethical Hacker",
+  ],
+  endLabel: "Certified Ethical Hacker",
   },
   {
     title: `Ethical Hacking Training ${new Date().getFullYear()}`,
@@ -1636,9 +1677,8 @@ export const CoursesData: CoursesDataType[] = [
       "Vulnerability Assessment",
       "Exploit Development",
       "Incident Response",
-    ],
-    certificateIncluded: true,
-    endLabel: "Certified Ethical Hacker",
+  ],
+  endLabel: "Certified Ethical Hacker",
   },
   {
     title: ` Up work Master Class ${new Date().getFullYear()}`,
@@ -1666,9 +1706,8 @@ export const CoursesData: CoursesDataType[] = [
       "Client Communication",
       "Project Management",
       "Freelance Business Growth",
-    ],
-    certificateIncluded: true,
-    endLabel: "Upwork Freelancer",
+  ],
+  endLabel: "Upwork Freelancer",
   },
   {
     title: " Upwork Tutorial for Beginners ",
@@ -1696,9 +1735,8 @@ export const CoursesData: CoursesDataType[] = [
       "Client Communication",
       "Job Search Strategies",
       "Freelance Basics",
-    ],
-    certificateIncluded: true,
-    endLabel: "Upwork Beginner Freelancer",
+  ],
+  endLabel: "Upwork Beginner Freelancer",
   },
   {
     title: " Fiverr Course ",
@@ -1726,9 +1764,8 @@ export const CoursesData: CoursesDataType[] = [
       "Keyword Optimization",
       "Client Communication",
       "Order Management",
-    ],
-    certificateIncluded: true,
-    endLabel: "Fiverr Freelancer",
+  ],
+  endLabel: "Fiverr Freelancer",
   },
   {
     title: "Shopify Drop Shipping Course",
@@ -1757,9 +1794,8 @@ export const CoursesData: CoursesDataType[] = [
       "Marketing Automation",
       "Conversion Optimization",
       "Customer Retention Strategies",
-    ],
-    certificateIncluded: true,
-    endLabel: "Shopify Drop Shipping Expert",
+  ],
+  endLabel: "Shopify Drop Shipping Expert",
   },
   {
     title: "Drop Shipping Mastery Course",
@@ -1788,9 +1824,8 @@ export const CoursesData: CoursesDataType[] = [
       "Marketing Automation",
       "Sales Funnel Optimization",
       "Customer Service Excellence",
-    ],
-    certificateIncluded: true,
-    endLabel: "Drop Shipping Business Owner",
+  ],
+  endLabel: "Drop Shipping Business Owner",
   },
   {
     title: "Ecommerce Business",
@@ -1818,9 +1853,8 @@ export const CoursesData: CoursesDataType[] = [
       "Brand Strategy",
       "Website Optimization",
       "Sales Strategy Development",
-    ],
-    certificateIncluded: true,
-    endLabel: "Ecommerce Business Owner",
+  ],
+  endLabel: "Ecommerce Business Owner",
   },
   {
     title: "Video Editing Course",
@@ -1848,9 +1882,8 @@ export const CoursesData: CoursesDataType[] = [
       "Transitions and Effects",
       "Audio Editing",
       "Color Correction",
-    ],
-    certificateIncluded: true,
-    endLabel: "Video Editor",
+  ],
+  endLabel: "Video Editor",
   },
   {
     title: "Tally ERP 9",
@@ -1878,9 +1911,8 @@ export const CoursesData: CoursesDataType[] = [
       "Inventory Control",
       "GST Compliance",
       "Financial Reporting",
-    ],
-    certificateIncluded: true,
-    endLabel: "Tally ERP 9 Specialist",
+  ],
+  endLabel: "Tally ERP 9 Specialist",
   },
   {
     title: "Microsoft Access",
@@ -1909,9 +1941,8 @@ export const CoursesData: CoursesDataType[] = [
       "Query Writing",
       "Form and Report Design",
       "Data Analysis Techniques",
-    ],
-    certificateIncluded: true,
-    endLabel: "Microsoft Access Specialist",
+  ],
+  endLabel: "Microsoft Access Specialist",
   },
   {
     title: "Plumber Training",
@@ -1939,9 +1970,8 @@ export const CoursesData: CoursesDataType[] = [
       "Water Supply Systems",
       "Drainage and Venting",
       "Leak Repair and Maintenance",
-    ],
-    certificateIncluded: true,
-    endLabel: "Certified Plumber",
+  ],
+  endLabel: "Certified Plumber",
   },
   {
     title: "Tailor Master",
@@ -1971,9 +2001,8 @@ export const CoursesData: CoursesDataType[] = [
       "Sewing Machine Operation",
       "Fitting and Alterations",
       "Garment Finishing Techniques",
-    ],
-    certificateIncluded: true,
-    endLabel: "Professional Tailor",
+  ],
+  endLabel: "Professional Tailor",
   },
   {
     title: "Microsoft PowerPoint",
@@ -2001,9 +2030,8 @@ export const CoursesData: CoursesDataType[] = [
       "Data Visualization",
       "Animation Techniques",
       "Presentation Skills",
-    ],
-    certificateIncluded: true,
-    endLabel: "PowerPoint Presentation Specialist",
+  ],
+  endLabel: "PowerPoint Presentation Specialist",
   },
   {
     title: "Auto - Mechanic",
@@ -2031,9 +2059,8 @@ export const CoursesData: CoursesDataType[] = [
       "Suspension Repair",
       "Electrical Systems",
       "Vehicle Maintenance Techniques",
-    ],
-    certificateIncluded: true,
-    endLabel: "Certified Auto Mechanic",
+  ],
+  endLabel: "Certified Auto Mechanic",
   },
   {
     title: "Electrician Course",
@@ -2061,9 +2088,8 @@ export const CoursesData: CoursesDataType[] = [
       "Load Calculations",
       "Safety Standards",
       "Troubleshooting Techniques",
-    ],
-    certificateIncluded: true,
-    endLabel: "Certified Electrician",
+  ],
+  endLabel: "Certified Electrician",
   },
   {
     title: "Mobile Repairing",
@@ -2091,9 +2117,8 @@ export const CoursesData: CoursesDataType[] = [
       "Software Troubleshooting",
       "Soldering Techniques",
       "Mobile Repair Tools",
-    ],
-    certificateIncluded: true,
-    endLabel: "Certified Mobile Repair Technician",
+  ],
+  endLabel: "Certified Mobile Repair Technician",
   },
   {
     title: "Communication Mastery Course",
@@ -2122,8 +2147,7 @@ export const CoursesData: CoursesDataType[] = [
       "Non-Verbal Communication",
       "Conflict Resolution",
       "Public Speaking Techniques",
-    ],
-    certificateIncluded: true,
-    endLabel: "Communication Specialist",
+  ],
+  endLabel: "Communication Specialist",
   },
 ];

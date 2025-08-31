@@ -26,7 +26,7 @@ import {
 
 
 export const stats = [
-  { number: "50,000+", label: "Students Enrolled" },
+  { number: "12,000+", label: "Students Enrolled" },
   { number: "95%", label: "Job Placement Rate" },
   { number: "4.8/5", label: "Average Rating" },
   { number: "200+", label: "Course Hours" },
@@ -34,23 +34,20 @@ export const stats = [
 
 export const testimonials = [
   {
-    name: "Sarah Chen",
+    name: "Rahul Sharma",
     role: "ML Engineer at Google",
-    image: "/1.jpg",
     content:
       "Growth Nation's curriculum is incredibly comprehensive. I went from zero ML knowledge to landing my dream job at Google in just 8 months!",
   },
   {
-    name: "Marcus Rodriguez",
+    name: "Aman Verma",
     role: "AI Consultant",
-    image: "/2.jpg",
     content:
       "The hands-on projects were game-changers. I built a portfolio that directly led to multiple job offers and my own consulting business.",
   },
   {
-    name: "Emily Watson",
+    name: "Neha Patel",
     role: "Data Scientist at Tesla",
-    image: "/3.jpg",
     content:
       "The instructors are world-class. Learning from industry experts made all the difference in understanding complex AI concepts.",
   },

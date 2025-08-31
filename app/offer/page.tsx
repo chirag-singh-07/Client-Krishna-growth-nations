@@ -109,9 +109,9 @@ export default function CourseLandingPage() {
 
   const faqs = [
     {
-      question: "Will I receive certificates upon course completion?",
+      question: "Will I receive any recognition upon course completion?",
       answer:
-        "Yes, you'll receive industry-recognized certificates for each course you complete. These certificates are verifiable and can be shared on LinkedIn or added to your professional portfolio.",
+        "You will receive a completion acknowledgement and access to shareable course achievements. These can be used to demonstrate course completion in portfolios or profiles.",
     },
     {
       question: "Do I need prior experience to enroll in these courses?",
@@ -138,15 +138,15 @@ export default function CourseLandingPage() {
         "Learn at your own pace with unlimited access to all course materials",
     },
     {
-      icon: Award,
-      title: "Industry Certificates",
-      description:
-        "Earn verifiable certificates recognized by leading companies",
-    },
-    {
       icon: Monitor,
       title: "Multi-Device Learning",
       description: "Access courses seamlessly across all your devices",
+    },
+    {
+      icon: Briefcase,
+      title: "Career Support",
+      description:
+        "Resume reviews, interview preparation, and placement support to help you land roles.",
     },
   ];
 
@@ -250,7 +250,7 @@ export default function CourseLandingPage() {
       <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fillRule=evenodd%3E%3Cg fill=%23ffffff fillOpacity=0.03%3E%3Ccircle cx=30 cy=30 r=1/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
-        <div className="relative container mx-auto px-4 py-20 lg:py-32">
+        <div className="relative container mx-auto px-4 py-20 lg:py-10">
           <div className="max-w-4xl mx-auto text-center flex flex-col">
             <div
               className={`transition-all duration-1000 ${
@@ -259,14 +259,11 @@ export default function CourseLandingPage() {
             >
               {/* <div>
                 <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-100">
-                  🚀 Certificate Affiliated with IIIT Bhubaneswar(Government
+                  🚀 Affiliated with IIIT Bhubaneswar (Government
                   University)
                 </Badge>
               </div> */}
-              <Badge className="mb-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 text-sm font-medium px-4 py-2 rounded-full">
-                🚀 Get  Affiliated Certificate with IIIT Bhubaneswar(Government
-                University)
-              </Badge>
+          
             </div>
 
             <div
@@ -274,7 +271,7 @@ export default function CourseLandingPage() {
                 isVisible ? "animate-fade-up" : "opacity-0"
               }`}
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Master{" "}
                 <span className="text-gradient">90+ Premium Courses</span>
                 <br />
@@ -287,7 +284,7 @@ export default function CourseLandingPage() {
                 isVisible ? "animate-fade-up" : "opacity-0"
               }`}
             >
-              <p className="text-xl md:text-2xl mb-8 text-slate-300 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl mb-8 text-slate-300 max-w-3xl mx-auto">
                 Transform your career with our comprehensive course collection.
                 Originally{" "}
                 <span className="line-through text-red-400">₹5,999</span>, now
@@ -311,7 +308,7 @@ export default function CourseLandingPage() {
               <div className="flex items-center gap-2 text-slate-300">
                 <Users className="h-5 w-5" />
                 <span className="font-medium">
-                  Join 50,000+ successful learners
+                  Join 10,000+ successful learners
                 </span>
               </div>
             </div>
@@ -406,61 +403,6 @@ export default function CourseLandingPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
-            Exceptional Value, Limited Time
-          </h2>
-
-          <div className="max-w-2xl mx-auto bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl p-8 shadow-xl border">
-            <div className="flex items-center justify-center gap-8 mb-8">
-              <div className="text-center">
-                <p className="text-slate-500 text-lg mb-2">Regular Price</p>
-                <p className="text-3xl font-bold text-slate-400 line-through">
-                  ₹5,999
-                </p>
-              </div>
-              <div className="text-4xl text-slate-400">→</div>
-              <div className="text-center">
-                <p className="text-slate-500 text-lg mb-2">Today Only</p>
-                <p className="text-5xl font-bold text-emerald-600">₹699</p>
-              </div>
-            </div>
-
-            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-8">
-              <p className="text-2xl font-bold text-emerald-800">
-                Save ₹5,000 (85% OFF)
-              </p>
-            </div>
-
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold text-xl px-12 py-4 rounded-lg w-full md:w-auto transform hover:scale-105 transition-all duration-200 shadow-lg"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Enroll Now - Limited Time
-              <ArrowRight className="ml-2 h-6 w-6" />
-            </Button>
-
-            <div className="flex items-center justify-center gap-6 mt-6 text-slate-600 text-sm">
-              <span className="flex items-center gap-1">
-                <CheckCircle className="h-4 w-4 text-emerald-600" />
-                Instant Access
-              </span>
-              <span className="flex items-center gap-1">
-                <Shield className="h-4 w-4 text-emerald-600" />
-                7-Day Guarantee
-              </span>
-              <span className="flex items-center gap-1">
-                <Award className="h-4 w-4 text-emerald-600" />
-                Certificates Included
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -511,65 +453,7 @@ export default function CourseLandingPage() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Start Your Learning Journey Today
-            </h2>
-            <p className="text-xl md:text-2xl mb-8 text-slate-300">
-              Join thousands of professionals who have advanced their careers
-              with our courses
-            </p>
-
-            <div className="glass-card rounded-2xl p-8 mb-8 max-w-2xl mx-auto">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-6">
-                {[
-                  { value: "90+", label: "Premium Courses" },
-                  { value: "∞", label: "Lifetime Access" },
-                  { value: "83%", label: "Savings" },
-                  { value: "7", label: "Day Guarantee" },
-                ].map((stat, index) => (
-                  <div key={index}>
-                    <div className="text-3xl font-bold text-blue-400">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm font-bold text-blue-500">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center mb-6">
-                <p className="text-2xl mb-2">
-                  <span className="line-through text-slate-400">₹5,999</span>{" "}
-                  <span className="text-emerald-400 font-bold">₹999</span>
-                </p>
-                <p className="text-emerald-400 font-semibold">
-                  Limited Time Offer
-                </p>
-              </div>
-            </div>
-
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold text-2xl px-12 py-6 rounded-lg transform hover:scale-105 transition-all duration-200 shadow-xl"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Enroll Now - Save ₹5,200
-              <ArrowRight className="ml-3 h-6 w-6" />
-            </Button>
-
-            <p className="text-slate-400 mt-6 flex items-center justify-center gap-4 flex-wrap text-sm">
-              <span>✓ Instant Access</span>
-              <span>✓ Secure Payment</span>
-              <span>✓ Money-Back Guarantee</span>
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Offer Modal */}
       <OfferModelDialog
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

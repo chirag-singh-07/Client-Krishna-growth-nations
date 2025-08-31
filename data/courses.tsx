@@ -55,11 +55,11 @@ export const courses = [
   },
   {
     icon: <Share2 className="w-8 h-8" />,
-    title: "Social Media Marketing",
+    title: "Stock Market Crash Course",
     description:
-      "Create strategies and ads for platforms like Instagram, LinkedIn, Facebook & YouTube.",
-    duration: "5 weeks",
-    level: "Beginner",
-    color: "from-pink-400 to-pink-500",
+      "Master stock market basics, technical analysis, trading strategies, and risk management in a fast-paced, practical course.",
+    duration: "4 weeks",
+    level: "Beginner to Intermediate",
+    color: "from-green-500 to-green-600",
   },
 ];

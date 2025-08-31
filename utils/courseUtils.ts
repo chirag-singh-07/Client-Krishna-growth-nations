@@ -5,7 +5,7 @@ const studentCountOptions = ["5K+", "10K+", "12K+", "25K+", "50K+", "100K+"];
 export const possibleFeatures = [
   "Downloadable resources",
   "Access on mobile & desktop",
-  "Certificate of completion",
+  // certificate references removed
   "Quizzes and assignments",
   "Lifetime access",
   "30+ hours of HD video",
@@ -21,7 +21,7 @@ export const possibleFeatures = [
   "Offline viewing support",
   "Interactive quizzes",
   "Project-based modules",
-  "Final course certificate",
+  
   "Exclusive bonus content",
 
   // New additions

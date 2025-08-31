@@ -17,20 +17,26 @@ export async function POST(req: Request) {
     const urls = getCourseUrlsById(CoursesData, courseId);
 
     // 1️⃣ If only 1 URL: show a CTA button
-    const courseLinkHtml =
-      urls.length === 1
-        ? `
-      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-        <tr>
-          <td style="text-align: center; padding: 20px 0;">
-            <a href="${urls[0]?.Url}" class="button" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-align: center; min-width: 200px; box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
-              Access Your Course Now →
-            </a>
-          </td>
-        </tr>
-      </table>
-    `
-        : `
+        const courseLinkHtml =
+            urls.length === 1
+                ? `
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td style="text-align: center; padding: 20px 0;">
+                        <div style="display: inline-flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                            <a href="${urls[0]?.Url}" class="button" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-align: center; min-width: 200px; box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+                                Access Your Course Now →
+                            </a>
+
+                            <a href="https://t.me/+5EW9o3IqOoc1ZmM1" class="button" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-align: center; min-width: 200px; box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+                                Join us on Telegram
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        `
+                : `
       <ul style="padding-left: 20px; font-size: 15px; color: #374151; line-height: 1.6; margin-top: 24px;">
         ${urls
           .map(
@@ -141,7 +147,7 @@ export async function POST(req: Request) {
                                 <ul style="margin: 0; padding-left: 20px; color: #6b7280; font-size: 14px; line-height: 1.6;">
                                     <li style="margin-bottom: 8px;">Access your course materials anytime, anywhere</li>
                                     <li style="margin-bottom: 8px;">Join our community discussions and connect with fellow learners</li>
-                                    <li style="margin-bottom: 8px;">Track your progress and earn certificates upon completion</li>
+                                    <li style="margin-bottom: 8px;">Track your progress and access course completion details</li>
                                 </ul>
                             </div>
                             

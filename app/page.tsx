@@ -20,32 +20,57 @@ import {
   Star,
 } from "lucide-react";
 import Image from "next/image";
+import HeroCarousel from "@/components/custom/HeroCarousel";
 
 import Link from "next/link";
-import React, { useState, useTransition } from "react";
+import React, { useState, useEffect } from "react";
 
 const HomePage = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [step, setStep] = useState(1);
-  const [isPending, startTransition] = useTransition();
+  const [loadVideo, setLoadVideo] = useState(false);
 
-  const handleOpenModal = (e: React.MouseEvent) => {
-    e.preventDefault();
-    startTransition(() => {
-      setShowModal(true);
-      setStep(1);
-      setFullName("");
-      setEmail("");
-    });
-  };
-  const handleCloseModal = () => {
-    startTransition(() => setShowModal(false));
-  };
-  const handleContinue = () => {
-    startTransition(() => setStep(2));
-  };
+  useEffect(() => {
+    try {
+      const hash = window.location.hash;
+      if (!hash) return;
+      // support common aliasing (reviews -> testimonials)
+      const aliasMap: Record<string, string> = {
+        "#reviews": "#testimonials",
+        "#review": "#testimonials",
+        "#testimonials": "#testimonials",
+        "#about": "#about",
+      };
+      const normalized = aliasMap[hash] || hash;
+      const id = normalized.replace("#", "");
+      // debug - log normalized target
+      // eslint-disable-next-line no-console
+      console.debug("home: detected hash", hash, "normalized->", normalized);
+
+      // try immediate scroll; if not present, retry a few times to allow layout to finish
+      let attempts = 0;
+      const maxAttempts = 6; // ~1.8s total
+  const tryScroll = () => {
+        attempts += 1;
+        const el = document.getElementById(id);
+        // eslint-disable-next-line no-console
+        console.debug(`home: tryScroll attempt=${attempts} id=${id} found=${!!el}`);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          return true;
+        }
+        return false;
+      };
+      if (!tryScroll()) {
+        const interval = setInterval(() => {
+          if (tryScroll() || attempts >= maxAttempts) {
+            clearInterval(interval);
+          }
+        }, 300);
+        return () => clearInterval(interval);
+      }
+    } catch (e) {
+      // ignore in SSR or if access denied
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -54,7 +79,7 @@ const HomePage = () => {
         className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-white to-pink-50"
         id="home"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -75,13 +100,15 @@ const HomePage = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-8 py-6"
-                >
-                  Start Learning Today
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                <Link href="/courses">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-8 py-6"
+                  >
+                    Start Learning Today
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
                 <Link href={"/offer"}>
                   <Button
                     size="lg"
@@ -122,15 +149,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="relative w-full h-[500px]">
-              {" "}
-              {/* Adjust height as needed */}
-              <Image
-                src="/g1.png"
-                alt="AI Learning Dashboard"
-                fill
-                className="rounded-2xl shadow-2xl object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-2xl blur-3xl opacity-20 transform scale-105" />
+              <HeroCarousel />
             </div>
           </div>
         </div>
@@ -174,134 +193,71 @@ const HomePage = () => {
               <span className="text-gray-700">Free trading plan template and E-book for all attendees!</span>
             </div>
             <p className="text-pink-700 font-semibold mb-6 text-lg">🔥 Limited Seats! Don’t miss this opportunity to learn from real experience (and save years of trial & error).</p>
-            <button
-              onClick={handleOpenModal}
-              className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-xl px-10 py-5 rounded-lg shadow-lg transition-all duration-200 text-center"
+
+            <a
+              href="https://whatsapp.com/channel/0029VbAvgYaAojYq92wzif3f"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-xl px-10 py-5 rounded-lg shadow-lg transition-all duration-200 text-center rounded-lg"
             >
               👉 Click here to Register NOW
-            </button>
+            </a>
 
-            {/* Modal Dialog */}
-            {showModal && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-sm">
-                <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative animate-fadeIn">
-                  <button
-                    className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold"
-                    onClick={handleCloseModal}
-                    aria-label="Close"
-                  >
-                    ×
-                  </button>
-                  {step === 1 && (
-                    <>
-                      <h3 className="text-2xl font-bold text-purple-700 mb-2 text-center">Confirm Your Email</h3>
-                      <p className="text-gray-600 mb-6 text-center">We’ll send your course access link to this email</p>
-                      <form
-                        className="space-y-4"
-                        onSubmit={e => {
-                          e.preventDefault();
-                          handleContinue();
-                        }}
-                      >
-                        <div>
-                          <label className="block text-gray-700 font-semibold mb-1">Full Name</label>
-                          <input
-                            type="text"
-                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                            placeholder="Enter your full name"
-                            value={fullName}
-                            onChange={e => setFullName(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-gray-700 font-semibold mb-1">Email Address</label>
-                          <input
-                            type="email"
-                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                            placeholder="Enter your email address"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-lg px-6 py-3 rounded-lg shadow-lg transition-all duration-200 mt-2"
-                        >
-                          Continue to Next Step
-                        </button>
-                      </form>
-                    </>
-                  )}
-                  {step === 2 && (
-                    <div className="text-center py-8">
-                      <h3 className="text-2xl font-bold text-purple-700 mb-2">Thank You!</h3>
-                      <p className="text-gray-700 mb-4">We’ve sent your course access link to <span className="font-semibold">{email}</span>.</p>
-                      <button
-                        className="mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-lg px-6 py-3 rounded-lg shadow-lg transition-all duration-200"
-                        onClick={handleCloseModal}
-                      >
-                        Close
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="courses" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+      <section id="courses" className="py-8 bg-gray-50">
+        <div className="container mx-auto px-2 sm:px-2 lg:px-4">
+          <div className="text-center space-y-2 mb-4">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
               Choose Your Tech Journey
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From beginner-friendly introductions to advanced specializations,
-              find the perfect course to accelerate your tech career.
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+              From beginner-friendly introductions to advanced specializations, find the perfect course to accelerate your tech career.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-3 lg:gap-3">
             {courses.map((course, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg"
+                className="group border-0 shadow-md p-2 m-0"
+                style={{ minHeight: '180px' }}
               >
-                <CardHeader className="space-y-4">
+                <CardHeader className="space-y-1 p-2 pb-0">
                   <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${course.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-r ${course.color} flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-200`}
                   >
                     {course.icon}
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <div className="flex items-center justify-between">
                       <Badge variant="secondary">{course.level}</Badge>
-                      <div className="flex items-center text-sm text-gray-500">
-                        <Clock className="w-4 h-4 mr-1" />
+                      <div className="flex items-center text-xs text-gray-500">
+                        <Clock className="w-3 h-3 mr-1" />
                         {course.duration}
                       </div>
                     </div>
-                    <CardTitle className="text-xl">{course.title}</CardTitle>
+                    <CardTitle className="text-base font-semibold">{course.title}</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription className="text-base leading-relaxed">
+                <CardContent className="p-2 pt-0">
+                  <CardDescription className="text-sm leading-snug">
                     {course.description}
                   </CardDescription>
-                  <Link href={"/courses"}>
-                    <Button className="w-full group-hover:bg-gray-900 transition-colors cursor-pointer">
-                      Learn More
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                  </Link>
                 </CardContent>
               </Card>
             ))}
+          </div>
+          <div className="flex justify-center mt-3">
+            <Link href="/courses">
+              <Button className="px-6 py-3 text-base font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg shadow-md transition-all duration-200">
+                View More &gt;
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -337,28 +293,34 @@ const HomePage = () => {
             </div>
 
             <div className="relative">
-              <Image
-                src={"/baanner-2.jpg"}
-                alt="Learning Experience"
-                className="rounded-2xl shadow-2xl"
-                height={500}
-                width={600}
-              />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-green-500 rounded-full flex items-center justify-center">
-                    <Award className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">
-                      Certificate Affiliated with
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      IIIT Bhubaneswar(Government University)
-                    </p>
-                  </div>
+                <div className="rounded-2xl shadow-2xl overflow-hidden">
+                  {!loadVideo ? (
+                    <div
+                      className="w-full h-[500px] rounded-2xl bg-black flex items-center justify-center cursor-pointer"
+                      onClick={() => setLoadVideo(true)}
+                      role="button"
+                      aria-label="Load video"
+                    >
+                      <div className="text-white text-center">
+                        <div className="mb-4 text-2xl font-semibold">Click to load video</div>
+                        <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center">
+                          <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <iframe
+                      src="https://drive.google.com/file/d/1Kx8bZVNuBAyHR-lxfvNW35lXnR8PvnkY/preview"
+                      width="600"
+                      height="500"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      title="Learning Experience Video"
+                      className="w-full h-[500px] rounded-2xl"
+                      style={{ background: "#000" }}
+                    ></iframe>
+                  )}
                 </div>
-              </div>
             </div>
           </div>
         </div>
@@ -390,23 +352,26 @@ const HomePage = () => {
                     ))}
                   </div>
                   <p className="text-gray-600 italic">{`"${testimonial.content}"`}</p>
-                  <div className="flex items-center space-x-3">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      className="w-12 h-12 rounded-full"
-                      width={80}
-                      height={80}
-                    />
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold"
+                            style={{ background: `linear-gradient(135deg,#6EE7B7,#10B981)` }}
+                          >
+                            {testimonial.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .slice(0, 2)
+                              .join("")}
+                          </div>
+                          <div>
+                            <p className="font-semibold text-gray-900">
+                              {testimonial.name}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {testimonial.role}
+                            </p>
+                          </div>
+                        </div>
                 </CardContent>
               </Card>
             ))}
@@ -426,24 +391,16 @@ const HomePage = () => {
               today. Limited-time offer: Get 30% off your first course!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6"
-              >
-                Start Now
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-6 bg-transparent"
-              >
-                View All Courses
-              </Button>
+              <Link href="/courses">
+                <Button
+                  size="lg"
+                  className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6"
+                >
+                  Start Now
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
             </div>
-            <p className="text-sm text-purple-200">
-              30-day money-back guarantee • No credit card required for trial
-            </p>
           </div>
         </div>
       </section>

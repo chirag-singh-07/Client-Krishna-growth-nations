@@ -121,7 +121,7 @@ export async function POST(req: Request) {
                                 <ul style="margin: 0; padding-left: 20px; color: #6b7280; font-size: 14px; line-height: 1.6;">
                                     <li style="margin-bottom: 8px;">Access your course materials anytime, anywhere</li>
                                     <li style="margin-bottom: 8px;">Join our community discussions and connect with fellow learners</li>
-                                    <li style="margin-bottom: 8px;">Track your progress and earn certificates upon completion</li>
+                                    <li style="margin-bottom: 8px;">Track your progress and access course completion details</li>
                                 </ul>
                             </div>
                             

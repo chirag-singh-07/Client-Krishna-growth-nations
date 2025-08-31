@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { useState } from "react";
-import { X, Mail, User, CheckCircle } from "lucide-react";
+import { X, Mail, User, CheckCircle, Phone } from "lucide-react";
 import { handleSendCourseEmail } from "@/utils/sendEmail";
 
 interface ModalDialogProps {
@@ -25,12 +25,16 @@ export default function ModalDialog({
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
   });
   const [checkBtn, setCheckBtn] = useState(false); // <-- New state
   // const courseId = localStorage.getItem("courseId");
   // console.log("Course ID from localStorage:", courseId);
 
-  const handleInputChange = (field: "name" | "email", value: string) => {
+  const handleInputChange = (
+    field: "name" | "email" | "phone",
+    value: string
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -38,7 +42,11 @@ export default function ModalDialog({
   };
 
   const handleContinue = () => {
-    if (formData.name.trim() && formData.email.trim()) {
+    if (
+      formData.name.trim() &&
+      formData.email.trim() &&
+      formData.phone.trim()
+    ) {
       localStorage.setItem("userData", JSON.stringify(formData));
       setStep(2);
     }
@@ -46,6 +54,18 @@ export default function ModalDialog({
 
   const handleConfirm = async () => {
     setCheckBtn(true);
+    // support a local mock mode for testing without real payments
+    const isMock = process.env.NEXT_PUBLIC_RAZORPAY_MOCK === "1";
+    if (isMock) {
+      // simulate network/processing delay
+      handleClose();
+      setTimeout(() => {
+        // mimic a successful payment flow
+        handleSendCourseEmail();
+        window.location.href = `/payment-success`;
+      }, 700);
+      return;
+    }
     handleClose(); // Close modal on success
     try {
       // Step 1: Create order from your backend
@@ -58,7 +78,19 @@ export default function ModalDialog({
         }),
       });
 
-      const data = await res.json();
+      let data: any = null;
+      try {
+        data = await res.json();
+      } catch (e) {
+        // non-json response
+        const text = await res.text();
+        throw new Error(`Razorpay API returned non-JSON: ${res.status} ${text}`);
+      }
+
+      if (!res.ok) {
+        const msg = data?.error || data?.message || JSON.stringify(data);
+        throw new Error(`Razorpay API error: ${res.status} ${msg}`);
+      }
       const storedUser = localStorage.getItem("userData");
       const userData = storedUser
         ? JSON.parse(storedUser)
@@ -86,6 +118,7 @@ export default function ModalDialog({
         prefill: {
           name: userData?.name as string,
           email: userData?.email as string,
+          contact: (userData?.phone as string) || undefined,
         },
         theme: {
           color: "#6366f1",
@@ -110,7 +143,7 @@ export default function ModalDialog({
 
   const handleClose = () => {
     setStep(1);
-    setFormData({ name: "", email: "" });
+    setFormData({ name: "", email: "", phone: "" });
     onClose();
   };
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -228,15 +261,29 @@ export default function ModalDialog({
                   Please confirm your email address
                 </p>
 
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-100/50 shadow-inner">
-                  <p className="text-sm font-medium text-gray-600 mb-2">
-                    Your email address:
-                  </p>
-                  <div className="flex items-center justify-center space-x-2">
-                    <Mail className="w-5 h-5 text-blue-600" />
-                    <p className="font-bold text-xl text-gray-900 break-all">
-                      {formData.email}
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-100/50 shadow-inner space-y-3">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 mb-2">
+                      Your email address:
                     </p>
+                    <div className="flex items-center justify-center space-x-2">
+                      <Mail className="w-5 h-5 text-blue-600" />
+                      <p className="font-bold text-xl text-gray-900 break-all">
+                        {formData.email}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 mb-2">
+                      Phone number:
+                    </p>
+                    <div className="flex items-center justify-center space-x-2">
+                      <Phone className="w-5 h-5 text-blue-600" />
+                      <p className="font-bold text-xl text-gray-900 break-all">
+                        {formData.phone}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

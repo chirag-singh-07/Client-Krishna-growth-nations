@@ -191,19 +191,7 @@ export default function CourseDetail({
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <Award className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">
-                      Certificate
-                    </p>
-                    <p className="text-lg font-bold text-gray-900">Included</p>
-                  </div>
-                </div>
-              </div>
+              {/* Certificate info removed per request */}
             </div>
 
             {/* Enhanced Long Description */}
@@ -367,6 +355,21 @@ export default function CourseDetail({
 
                 {/* Enhanced Course Includes */}
                 <div className="space-y-4">
+                  {getCourses.id === "stock-market-crash-course" && (
+                    <div className="rounded-lg p-3 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-200">
+                      <div className="flex items-center gap-3">
+                        <Award className="w-5 h-5 text-yellow-600" />
+                        <div>
+                          <p className="text-sm text-yellow-800 font-semibold">
+                            Also includes
+                          </p>
+                          <p className="text-lg font-bold text-yellow-900">
+                            90+ course links
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <h4 className="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
                     <Award className="w-5 h-5 text-blue-600" />
                     This course includes:
@@ -387,11 +390,6 @@ export default function CourseDetail({
                       icon: Globe,
                       text: "Access on mobile & desktop",
                       color: "text-green-500",
-                    },
-                    {
-                      icon: Award,
-                      text: "Certificate of completion",
-                      color: "text-purple-500",
                     },
                   ].map((item, index) => (
                     <div
