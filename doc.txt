@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Purchase Confirmation</title>
+    <style>
+        /* Reset styles for email clients */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+        
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .content {
+                padding: 20px !important;
+            }
+            .header {
+                padding: 30px 20px !important;
+            }
+            .button {
+                width: 100% !important;
+                padding: 18px 20px !important;
+                font-size: 18px !important;
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+    
+    <!-- Main Container -->
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8fafc;">
+        <tr>
+            <td style="padding: 40px 20px;">
+                
+                <!-- Email Container -->
+                <table class="container" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    
+                    <!-- Header with Gradient -->
+                    <tr>
+                        <td class="header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+                            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; line-height: 1.2;">
+                                🎉 Welcome to Your Course!
+                            </h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Main Content -->
+                    <tr>
+                        <td class="content" style="padding: 40px 30px;">
+                            
+                            <!-- Greeting -->
+                            <p style="margin: 0 0 20px 0; font-size: 18px; line-height: 1.6; color: #374151;">
+                                Hi <strong>[Name]</strong>,
+                            </p>
+                            
+                            <!-- Thank you message -->
+                            <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                                Thank you so much for purchasing <strong style="color: #667eea;">[Course Title]</strong>! We're thrilled to have you join our learning community.
+                            </p>
+                            
+                            <p style="margin: 0 0 35px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                                Your course is now ready and waiting for you. Click the button below to start your learning journey right away!
+                            </p>
+                            
+                            <!-- Call-to-Action Button -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td style="text-align: center; padding: 20px 0;">
+                                        <a href="[Course Link]" class="button" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-align: center; min-width: 200px; box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+                                            Access Your Course Now →
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Additional Info -->
+                            <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 30px 0;">
+                                <h3 style="margin: 0 0 15px 0; font-size: 18px; color: #374151; font-weight: 600;">
+                                    What's Next?
+                                </h3>
+                                <ul style="margin: 0; padding-left: 20px; color: #6b7280; font-size: 14px; line-height: 1.6;">
+                                    <li style="margin-bottom: 8px;">Access your course materials anytime, anywhere</li>
+                                    <li style="margin-bottom: 8px;">Join our community discussions and connect with fellow learners</li>
+                                    <li style="margin-bottom: 8px;">Track your progress and earn certificates upon completion</li>
+                                </ul>
+                            </div>
+                            
+                            <p style="margin: 25px 0 0 0; font-size: 14px; line-height: 1.6; color: #6b7280;">
+                                If you have any questions or need assistance, don't hesitate to reach out to our support team. We're here to help you succeed!
+                            </p>
+                            
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8fafc; padding: 30px; text-align: center; border-radius: 0 0 12px 12px; border-top: 1px solid #e5e7eb;">
+                            <p style="margin: 0; font-size: 16px; color: #374151; font-weight: 500;">
+                                Happy learning! – <span style="color: #667eea; font-weight: 600;">Growth Nation Team</span>
+                            </p>
+                            
+                            <!-- Social Links (Optional) -->
+                            <div style="margin-top: 20px;">
+                                <p style="margin: 0; font-size: 12px; color: #9ca3af; line-height: 1.5;">
+                                    Growth Nation | Online Learning Platform<br>
+                                    Follow us for more learning tips and updates
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Course Bundle!</title>
+    <style>
+        /* Reset styles for email clients */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Arial, sans-serif;">
+    <!-- Main Container -->
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
+        <tr>
+            <td style="padding: 20px 0;">
+                <!-- Email Content Container -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 600px;">
+                    
+                    <!-- Header with Gradient -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+                            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold; line-height: 1.2;">
+                                🎉 Congratulations!
+                            </h1>
+                            <p style="margin: 10px 0 0 0; color: #ffffff; font-size: 16px; opacity: 0.9;">
+                                Your Premium Course Bundle is Ready
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Main Content -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            <!-- Greeting -->
+                            <p style="margin: 0 0 20px 0; font-size: 18px; color: #333333; line-height: 1.5;">
+                                Hi [Name],
+                            </p>
+                            
+                            <!-- Main Message -->
+                            <p style="margin: 0 0 25px 0; font-size: 16px; color: #555555; line-height: 1.6;">
+                                Thank you for purchasing our <strong>Premium Course Bundle</strong>! We're thrilled to welcome you to our learning community.
+                            </p>
+                            
+                            <p style="margin: 0 0 30px 0; font-size: 16px; color: #555555; line-height: 1.6;">
+                                You now have access to <strong>90+ high-quality courses</strong> covering a wide range of topics to accelerate your personal and professional growth.
+                            </p>
+                            
+                            <!-- Value Highlight Box -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9ff; border-radius: 8px; margin: 0 0 30px 0;">
+                                <tr>
+                                    <td style="padding: 25px; text-align: center;">
+                                        <h2 style="margin: 0 0 10px 0; font-size: 24px; color: #667eea; font-weight: bold;">
+                                            What You Get:
+                                        </h2>
+                                        <p style="margin: 0; font-size: 18px; color: #333333; font-weight: 600;">
+                                            📚 90+ Premium Courses<br>
+                                            ♾️ Lifetime Access<br>
+                                            🎯 Expert-Led Content<br>
+                                            📱 Mobile & Desktop Compatible
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- CTA Button -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0 0 30px 0;">
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <a href="[Access Link]" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 18px 40px; border-radius: 50px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+                                            🚀 Access Your Courses Now
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Additional Message -->
+                            <p style="margin: 0 0 20px 0; font-size: 16px; color: #555555; line-height: 1.6;">
+                                Start your learning journey today and unlock your potential with our comprehensive course library. Remember, you have <strong>lifetime access</strong>, so you can learn at your own pace!
+                            </p>
+                            
+                            <p style="margin: 0; font-size: 16px; color: #555555; line-height: 1.6;">
+                                If you have any questions or need assistance, don't hesitate to reach out to our support team.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8f9ff; padding: 30px; text-align: center; border-radius: 0 0 12px 12px; border-top: 1px solid #e0e6ff;">
+                            <p style="margin: 0; font-size: 16px; color: #667eea; font-weight: 600;">
+                                Happy learning! – Growth Nation Team
+                            </p>
+                            <p style="margin: 10px 0 0 0; font-size: 14px; color: #888888;">
+                                © 2024 Growth Nation. All rights reserved.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+    <!-- Mobile Responsive Styles -->
+    <style>
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+                margin: 0 10px !important;
+            }
+            .content-padding {
+                padding: 25px 20px !important;
+            }
+            .header-padding {
+                padding: 30px 20px !important;
+            }
+            .button-text {
+                font-size: 16px !important;
+                padding: 15px 30px !important;
+            }
+            .main-heading {
+                font-size: 24px !important;
+            }
+            .value-heading {
+                font-size: 20px !important;
+            }
+        }
+    </style>
+</body>
+</html>

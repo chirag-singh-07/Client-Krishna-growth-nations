@@ -1,0 +1,371 @@
+export const courseSkillsMap: Record<string, string[]> = {
+  "Software Development": [
+    "Object-Oriented Programming",
+    "Design Patterns",
+    "Version Control with Git",
+    "Debugging Techniques",
+    "Agile Development"
+  ],
+  "IOS App Development": [
+    "Swift Programming",
+    "Xcode Usage",
+    "UI Kit & SwiftUI",
+    "Publishing to App Store",
+    "Core Data Integration"
+  ],
+  "Game Development": [
+    "Game Loop Mechanics",
+    "Unity Engine Basics",
+    "Sprite Animation",
+    "Collision Detection",
+    "Game Physics"
+  ],
+  "Python framework": [
+    "Flask/Routing",
+    "Template Rendering",
+    "ORM with SQLAlchemy",
+    "API Building",
+    "Authentication in Flask"
+  ],
+  "Basic of Programming": [
+    "Variables & Data Types",
+    "Conditional Statements",
+    "Loops & Functions",
+    "Basic Algorithms",
+    "Problem Solving"
+  ],
+  "Marketing": [
+    "Customer Psychology",
+    "Marketing Funnels",
+    "Email Campaigns",
+    "Target Audience Research",
+    "Lead Generation"
+  ],
+  "SEO": [
+    "Keyword Research",
+    "On-Page Optimization",
+    "Link Building",
+    "Technical SEO",
+    "Google Search Console"
+  ],
+  "Graphic Design": [
+    "Typography Basics",
+    "Color Theory",
+    "Layout Design",
+    "Using Photoshop",
+    "Design for Web & Print"
+  ],
+  "YouTube": [
+    "Channel Setup",
+    "Video Optimization",
+    "YouTube SEO",
+    "Monetization Rules",
+    "Content Strategy"
+  ],
+  "Amazon": [
+    "Product Listing",
+    "Keyword Targeting",
+    "Sponsored Ads",
+    "Fulfillment by Amazon",
+    "Brand Registry"
+  ],
+  "Ethical Hacking": [
+    "Linux Fundamentals",
+    "Reconnaissance Techniques",
+    "Penetration Testing",
+    "Metasploit Usage",
+    "Wi-Fi Cracking"
+  ],
+  "Freelancing": [
+    "Profile Optimization",
+    "Upwork & Fiverr Setup",
+    "Client Communication",
+    "Proposal Writing",
+    "Time Management"
+  ],
+  "Ecommerce": [
+    "Niche Selection",
+    "Payment Integration",
+    "Product Page Optimization",
+    "Conversion Tactics",
+    "Facebook Ads for Sales"
+  ],
+  "Video Editing": [
+    "Cutting & Trimming",
+    "Using Transitions",
+    "Color Correction",
+    "Background Music Sync",
+    "Export Settings"
+  ],
+  "Tally": [
+    "Ledger Creation",
+    "Voucher Entry",
+    "GST Configuration",
+    "Balance Sheet Generation",
+    "Payroll Management"
+  ],
+  "Networking": [
+    "OSI Model",
+    "IP Addressing",
+    "Subnetting",
+    "Router & Switch Setup",
+    "Firewall Configuration"
+  ],
+  "Google AdSense": [
+    "Policy Compliance",
+    "Ad Placement",
+    "CTR Optimization",
+    "YouTube Integration",
+    "Earnings Reports"
+  ],
+  "Computer Basics": [
+    "Windows Navigation",
+    "MS Word & Excel",
+    "File Management",
+    "Internet Safety",
+    "Basic Troubleshooting"
+  ],
+  "React": [
+    "JSX Syntax",
+    "Hooks (useState, useEffect)",
+    "React Router",
+    "Props & State",
+    "Component Reusability"
+  ],
+  "Microsoft": [
+    "MS Word Formatting",
+    "Excel Formulas",
+    "PowerPoint Design",
+    "Outlook Management",
+    "Data Entry Tips"
+  ],
+  ".Net": [
+    "ASP.NET MVC",
+    "C# Basics",
+    "Entity Framework",
+    "Routing & Controllers",
+    "Form Validation"
+  ],
+  "Plumber": [
+    "Pipes & Fittings",
+    "Water Heater Setup",
+    "Drainage Layout",
+    "Tool Usage",
+    "Safety Precautions"
+  ],
+  "Auto– Mechanic": [
+    "Engine Diagnosis",
+    "Battery Maintenance",
+    "Brake Repair",
+    "Cooling System Check",
+    "Transmission Basics"
+  ],
+  "Electrician": [
+    "Basic Wiring",
+    "Circuit Design",
+    "Meter Reading",
+    "Switchboard Assembly",
+    "Safety Protocols"
+  ],
+  "Mobile Repairing": [
+    "Disassembly Tools",
+    "Screen Replacement",
+    "Battery Testing",
+    "Soldering Practice",
+    "Motherboard Diagnosis"
+  ],
+  "Option Trading": [
+    "Call & Put Options",
+    "Strike Price",
+    "Break-even Analysis",
+    "Risk Management",
+    "Technical Charting"
+  ],
+  "Photography": [
+    "Camera Settings",
+    "Lighting Techniques",
+    "Composition Rules",
+    "Portrait Photography",
+    "Editing in Lightroom"
+  ],
+  "AutoCAD": [
+    "2D Drafting",
+    "3D Modelling",
+    "Layers & Blocks",
+    "Dimensioning",
+    "Print Layouts"
+  ],
+  "Corporate Branding": [
+    "Logo Design Principles",
+    "Color Consistency",
+    "Typography Systems",
+    "Brand Guidelines",
+    "Stationery Mockups"
+  ],
+  "Content Writing": [
+    "SEO-Friendly Writing",
+    "Headline Crafting",
+    "Grammar Essentials",
+    "Audience Targeting",
+    "Blog Structure"
+  ],
+  "Communication": [
+    "Verbal Clarity",
+    "Body Language",
+    "Active Listening",
+    "Public Speaking",
+    "Conflict Handling"
+  ],
+  "Tailor": [
+    "Sewing Techniques",
+    "Pattern Drafting",
+    "Measurement Basics",
+    "Machine Handling",
+    "Fabric Selection"
+  ],
+  "Sales Closing": [
+    "Objection Handling",
+    "Closing Scripts",
+    "Urgency Creation",
+    "Negotiation Techniques",
+    "Follow-up Strategy"
+  ],
+  "Dropshipping": [
+    "Store Setup",
+    "Supplier Selection",
+    "Product Research",
+    "Facebook Ad Campaigns",
+    "Order Fulfillment"
+  ],
+  "Pinterest SEO": [
+    "Pin Design",
+    "Board Structuring",
+    "Keyword Strategy",
+    "Pinterest Analytics",
+    "Affiliate Linking"
+  ],
+  "Affiliate Marketing": [
+    "Finding Products",
+    "Affiliate Funnels",
+    "Content Promotion",
+    "Email Sequences",
+    "Performance Tracking"
+  ],
+  "Photoshop": [
+    "Layers & Masks",
+    "Photo Retouching",
+    "Banner Creation",
+    "Smart Objects",
+    "Exporting Assets"
+  ],
+  "Illustrator": [
+    "Vector Drawing",
+    "Pen Tool Usage",
+    "Logo Design",
+    "Typography Tools",
+    "Color Palettes"
+  ],
+  "WordPress": [
+    "Theme Customization",
+    "Plugin Installation",
+    "Elementor Builder",
+    "SEO Setup",
+    "Contact Forms"
+  ],
+  "Resume, LinkedIn": [
+    "Professional Formatting",
+    "Profile Optimization",
+    "Keyword Insertion",
+    "Cover Letter Writing",
+    "ATS Readability"
+  ],
+  "PHP": [
+    "Syntax & Loops",
+    "CRUD Operations",
+    "MySQL Integration",
+    "Session Handling",
+    "MVC Basics"
+  ],
+  "Java": [
+    "Java Syntax",
+    "OOP Concepts",
+    "Collections Framework",
+    "Exception Handling",
+    "File I/O"
+  ],
+  "Angular": [
+    "Components & Modules",
+    "Routing",
+    "Services & Dependency Injection",
+    "Template Binding",
+    "RxJS Basics"
+  ],
+  "Cyber Security": [
+    "Data Encryption",
+    "Secure Networking",
+    "Phishing Detection",
+    "Malware Protection",
+    "Incident Response"
+  ]
+};
+
+
+{
+  id: 'wordpress-course',
+  title: 'WordPress Full Course',
+  smallDescription: 'Learn how to build and manage websites using WordPress.',
+  longDescription: "The WordPress Full Course is designed to take you from absolute beginner to confident website creator. Whether you want to build your own blog, portfolio, business site, or even an e-commerce platform, this course provides a solid foundation to help you get started with WordPress — the world’s most popular content management system. In this course, you'll learn how to install and configure WordPress, customize themes, install plugins, and create engaging pages and blog posts without writing a single line of code. For those who want to go deeper, we’ll also cover basic customization techniques using HTML, CSS, and the WordPress Theme Editor. You’ll understand how to make your site mobile responsive, SEO-friendly, and optimized for performance. We’ll walk you through real-world examples, step by step — including how to launch a website, choose a domain, and maintain it securely. You’ll also explore important topics like backups, analytics, spam protection, and integrating contact forms and newsletters. By the end of the course, you’ll be able to confidently create and manage fully functional websites using WordPress. Whether you're a student, freelancer, entrepreneur, or content creator, this course is your gateway to establishing a powerful online presence. No prior experience is required — just your willingness to learn and experiment. Get ready to unlock the full potential of WordPress and start building the website of your dreams!",
+  level: 'beginner',
+  time: '1 week',
+  price: 799,
+  salePrice: 499,
+  category: 'Development',
+  IconColor: 'from-purple-500 to-purple-600',
+  subCourses: [
+    {
+      id: ' word-press-theme-development',
+      title: ' Word Press Theme Development',
+      smallDescription: 'Master the process of building custom WordPress themes.',
+      time: '1 week',
+      level: 'beginner',
+      IconColor: 'from-stone-500 to-stone-600',
+      bgColor: 'bg-orange-50',
+      color: 'from-orange-500 to-red-500',
+      lessons: 14,
+      textColor: 'text-orange-600'
+    },
+    {
+      id: 'ecommerce-website-in-wordpress',
+      title: 'Ecommerce Website in WordPress',
+      smallDescription: 'Build a complete ecommerce site using WordPress and WooCommerce.',
+      time: '1 week',
+      level: 'advanced',
+      IconColor: 'from-sky-500 to-sky-600',
+      included: true,
+      bgColor: 'bg-orange-50',
+      color: 'from-orange-500 to-red-500',
+      lessons: 4,
+      textColor: 'text-orange-600'
+    }
+  ],
+  certificateIncluded: true,
+  rating: 4.5,
+  totalReviews: 8242,
+  totalStudents: '50K+',
+  guarantee: '14-Day Trial Access',
+  features: [
+    'Weekly practice tasks',
+    'Visual learning aids',
+    'Offline viewing support',
+    'Practice exercises',
+    'Quizzes and assignments'
+  ],
+  skills: [
+    'Theme Customization',
+    'Plugin Installation',
+    'Elementor Builder',
+    'SEO Setup',
+    'Contact Forms'
+  ]
+    endLabel: "Communication Specialist",
+}
