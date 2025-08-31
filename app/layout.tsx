@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/custom/Navbar";
 import Footer from "@/components/custom/Footer";
 import Script from "next/script";
-import MockBanner from "@/components/custom/MockBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +42,6 @@ export default function RootLayout({
   <Navbar />
   {children}
   <Footer />
-  <MockBanner />
       </body>
     </html>
   );
