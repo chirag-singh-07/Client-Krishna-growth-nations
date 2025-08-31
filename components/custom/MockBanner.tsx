@@ -10,7 +10,7 @@ export default function MockBanner() {
   const envMock = process.env.NEXT_PUBLIC_RAZORPAY_MOCK === "1";
 
   // check runtime window flag only after mount
-  const isMockRuntime = mounted && typeof window !== "undefined" && !!(window as any).__RZP_MOCK__;
+  const isMockRuntime = mounted && typeof window !== "undefined" && !!((window as unknown as { __RZP_MOCK__?: boolean }).__RZP_MOCK__);
 
   if (!envMock && !isMockRuntime) return null;
 

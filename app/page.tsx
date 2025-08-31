@@ -11,15 +11,7 @@ import {
 import { stats, testimonials } from "@/data";
 import { benefits } from "@/data/benefits";
 import { courses } from "@/data/courses";
-import {
-  ArrowRight,
-  Award,
-  CheckCircle,
-  Clock,
-  Shield,
-  Star,
-} from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, Clock, Star } from "lucide-react";
 import HeroCarousel from "@/components/custom/HeroCarousel";
 
 import Link from "next/link";
@@ -67,7 +59,7 @@ const HomePage = () => {
         }, 300);
         return () => clearInterval(interval);
       }
-    } catch (e) {
+      } catch {
       // ignore in SSR or if access denied
     }
   }, []);

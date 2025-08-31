@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Razorpay from "razorpay";
 
 const isMock = process.env.RAZORPAY_MOCK === "1";
-let razorpay: any = null;
+let razorpay: Razorpay | null = null;
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -43,10 +43,14 @@ export async function POST(request: Request) {
     const order = await razorpay.orders.create(options);
     return NextResponse.json({ order });
   } catch (error) {
-  const err: any = error;
-  console.error("Razorpay Error:", err);
-  if (err && err.stack) console.error(err.stack);
-  const message = err?.message || (typeof err === "string" ? err : JSON.stringify(err)) || "Failed to create Razorpay order";
-  return NextResponse.json({ error: message }, { status: 500 });
+    const err = error as Error | { message?: string } | unknown;
+    // eslint-disable-next-line no-console
+    console.error("Razorpay Error:", err);
+    if (typeof err === "object" && err !== null && "stack" in err) {
+      const stack = (err as unknown as { stack?: string }).stack;
+      if (stack) console.error(stack);
+    }
+    const message = (err as unknown as { message?: string })?.message || (typeof err === "string" ? err : JSON.stringify(err)) || "Failed to create Razorpay order";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

@@ -1,11 +1,11 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend: Resend | null = null;
 
 export async function POST(req: Request) {
-  try {
-    const { name, email } = await req.json();
+    try {
+        const { name, email } = await req.json();
 
     if (!name || !email) {
       return new Response("Missing required fields", { status: 400 });
@@ -16,7 +16,14 @@ export async function POST(req: Request) {
 
     const courseTitle = "Pack of 90+ courses";
 
-    const data = await resend.emails.send({
+        const apiKey = process.env.RESEND_API_KEY;
+        if (!apiKey) {
+            console.error("RESEND_API_KEY not configured");
+            return NextResponse.json({ error: "Email provider not configured" }, { status: 500 });
+        }
+        if (!resend) resend = new Resend(apiKey);
+
+        const data = await resend.emails.send({
       from: "Growth Nation <noreply@growthnations.in>",
       to: email,
       subject: `Access Link for ${courseTitle}`,

@@ -29,7 +29,7 @@ export default function HeroCarousel() {
 
   const stop = () => {
     if (intervalRef.current) {
-      clearInterval(intervalRef.current as any);
+      clearInterval(intervalRef.current as unknown as number);
       intervalRef.current = null;
     }
   };
@@ -41,7 +41,9 @@ export default function HeroCarousel() {
       mountedRef.current = false;
       stop();
     };
-  }, [total]);
+    // total is stable here; start/stop handle interval lifecycle
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const prev = () => setIndex((i) => (i - 1 + total) % total);
   const next = () => setIndex((i) => (i + 1) % total);

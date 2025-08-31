@@ -13,7 +13,6 @@ import { CoursesData } from "@/data/CoursesData";
 import { ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 const categoryName = [
   "Development Courses",
@@ -31,7 +30,7 @@ const categoryName = [
 ];
 
 const CoursesPage = () => {
-  const router = useRouter();
+
 
   useEffect(() => {
     try {
@@ -85,7 +84,7 @@ const CoursesPage = () => {
         const t = setTimeout(tryScroll, 300);
         return () => clearTimeout(t);
       }
-    } catch (e) {
+    } catch {
       // ignore in SSR
     }
   }, []);

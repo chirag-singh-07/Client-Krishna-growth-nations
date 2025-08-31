@@ -16,20 +16,17 @@ export async function POST(request: Request) {
   const expected = crypto.createHmac("sha256", secret).update(bodyText).digest("hex");
 
   let valid = false;
+  // try hex buffer compare first; fall back to utf8 comparison if needed
   try {
-    // try hex buffer compare first
     const expectedBuf = Buffer.from(expected, "hex");
     const sigBuf = Buffer.from(signature, "hex");
-    if (expectedBuf.length === sigBuf.length && crypto.timingSafeEqual(expectedBuf, sigBuf)) {
-      valid = true;
-    }
-  } catch (e) {
-    // fallback: compare raw utf8 strings in timing-safe manner
+    if (expectedBuf.length === sigBuf.length && crypto.timingSafeEqual(expectedBuf, sigBuf)) valid = true;
+  } catch {
     try {
       const expectedUtf = Buffer.from(expected, "utf8");
       const sigUtf = Buffer.from(signature, "utf8");
       if (expectedUtf.length === sigUtf.length && crypto.timingSafeEqual(expectedUtf, sigUtf)) valid = true;
-    } catch (e2) {
+    } catch {
       valid = false;
     }
   }
@@ -39,31 +36,35 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
-  let payload: any = null;
+  let payload: unknown = null;
   try {
-    payload = JSON.parse(bodyText);
-  } catch (e) {
-    console.error("Failed to parse webhook JSON", e);
+    payload = JSON.parse(bodyText) as unknown;
+  } catch (err) {
+    console.error("Failed to parse webhook JSON", err);
     return NextResponse.json({ error: "Bad JSON" }, { status: 400 });
   }
 
-  const event = payload.event;
+  const payloadObj = payload as Record<string, unknown>;
+  const event = (payloadObj["event"] as string | undefined) || undefined;
   console.log("Razorpay webhook received:", event);
   // Minimal handling: log and return 200. Extend this to update DB/order status.
   try {
     if (event === "payment.captured") {
-      // example: extract payment info
-      const payment = payload.payload?.payment?.entity;
-      console.log("Payment captured:", payment?.id, payment?.amount, payment?.notes);
+      // example: extract payment info (narrow payload locally)
+      const p = payloadObj["payload"] as Record<string, unknown> | undefined;
+      const payment = (p?.["payment"] as Record<string, unknown> | undefined)?.["entity"] as Record<string, unknown> | undefined;
+      console.log("Payment captured:", payment?.["id"], payment?.["amount"], payment?.["notes"]);
       // TODO: update order status in DB, send confirmation email, etc.
     } else if (event === "payment.failed") {
-      const payment = payload.payload?.payment?.entity;
-      console.log("Payment failed:", payment?.id, payment?.error_code || payment?.status);
+      const p = payloadObj["payload"] as Record<string, unknown> | undefined;
+      const payment = (p?.["payment"] as Record<string, unknown> | undefined)?.["entity"] as Record<string, unknown> | undefined;
+      console.log("Payment failed:", payment?.["id"], payment?.["error_code"] || payment?.["status"]);
     } else {
+      // eslint-disable-next-line no-console
       console.log("Unhandled razorpay event:", event);
     }
-  } catch (e) {
-    console.error("Error processing webhook:", e);
+  } catch (err) {
+    console.error("Error processing webhook:", err);
   }
 
   return NextResponse.json({ ok: true });

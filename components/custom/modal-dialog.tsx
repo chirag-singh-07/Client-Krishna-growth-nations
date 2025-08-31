@@ -78,17 +78,18 @@ export default function ModalDialog({
         }),
       });
 
-      let data: any = null;
+      let data: unknown = null;
       try {
         data = await res.json();
-      } catch (e) {
+      } catch {
         // non-json response
         const text = await res.text();
         throw new Error(`Razorpay API returned non-JSON: ${res.status} ${text}`);
       }
 
       if (!res.ok) {
-        const msg = data?.error || data?.message || JSON.stringify(data);
+        const d = data as unknown as { error?: string; message?: string };
+        const msg = d?.error || d?.message || JSON.stringify(d);
         throw new Error(`Razorpay API error: ${res.status} ${msg}`);
       }
       const storedUser = localStorage.getItem("userData");
@@ -96,14 +97,17 @@ export default function ModalDialog({
         ? JSON.parse(storedUser)
         : { name: "Johan", email: "johan@gmail.com" };
 
+      type RazorpayOrder = { order?: { amount?: number; id?: string }; error?: string; message?: string };
+      const d = data as unknown as RazorpayOrder;
+
       // Step 2: Razorpay options
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-        amount: data.order.amount,
+        amount: d.order?.amount ?? course.price * 100,
         currency: "INR",
         name: "Growth Nation",
         description: course.title,
-        order_id: data.order.id,
+        order_id: d.order?.id,
         handler: function (response: {
           razorpay_payment_id: string;
           razorpay_order_id: string;
@@ -130,7 +134,12 @@ export default function ModalDialog({
         },
       };
 
-      const razor = new window.Razorpay(options);
+      const win = window as unknown as { Razorpay?: { new (opts: unknown): { open: () => void } } };
+      const Razor = win.Razorpay;
+      if (!Razor) {
+        throw new Error("Razorpay SDK not available");
+      }
+      const razor = new Razor(options as unknown);
       razor.open();
     } catch (error) {
       console.error("Payment failed:", error);

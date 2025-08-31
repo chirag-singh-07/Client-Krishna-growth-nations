@@ -75,15 +75,16 @@ const OfferModelDialog = ({ isOpen, onClose }: OfferModelDialogProps) => {
         }),
       });
 
-      let data: any = null;
+      let data: unknown = null;
       try {
         data = await res.json();
-      } catch (e) {
+      } catch {
         const text = await res.text();
         throw new Error(`Razorpay API returned non-JSON: ${res.status} ${text}`);
       }
       if (!res.ok) {
-        const msg = data?.error || data?.message || JSON.stringify(data);
+        const d = data as unknown as { error?: string; message?: string };
+        const msg = d?.error || d?.message || JSON.stringify(d);
         throw new Error(`Razorpay API error: ${res.status} ${msg}`);
       }
       const storedUser = localStorage.getItem("userData");
@@ -91,13 +92,16 @@ const OfferModelDialog = ({ isOpen, onClose }: OfferModelDialogProps) => {
         ? JSON.parse(storedUser)
         : { name: "Johan", email: "johan@gmail.com" };
 
+      type RazorpayOrder = { order?: { amount?: number; id?: string }; error?: string; message?: string };
+      const d = data as unknown as RazorpayOrder;
+
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-        amount: data.order.amount,
+        amount: d.order?.amount ?? Math.round(6.99 * 100),
         currency: "INR",
         name: "Growth Nation",
         description: courseTitle,
-        order_id: data.order.id,
+        order_id: d.order?.id,
         handler: function () {
           // alert("✅ Payment successful!");
           //   console.log("Payment ID:", response.razorpay_payment_id);
@@ -119,8 +123,13 @@ const OfferModelDialog = ({ isOpen, onClose }: OfferModelDialogProps) => {
         },
       };
 
-      const razor = new window.Razorpay(options);
-      razor.open();
+  const win = window as unknown as { Razorpay?: { new (opts: unknown): { open: () => void } } };
+  const Razor = win.Razorpay;
+  if (!Razor) {
+    throw new Error("Razorpay SDK not available");
+  }
+  const razor = new Razor(options as unknown);
+  razor.open();
     } catch (error) {
       console.error("Payment failed:", error);
       alert("Something went wrong. Try again.");
