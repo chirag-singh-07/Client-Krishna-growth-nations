@@ -13,18 +13,20 @@ import {
   CheckCircle,
   Globe,
   Download,
+  Disc2Icon,
 } from "lucide-react";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import ModalDialog from "@/components/custom/modal-dialog";
+import PromoCodeModal from "@/components/custom/pronmoCodeDialog";
 
 type CourseProps = {
   id: string;
   title: string;
   smallDescription: string;
-  
+
   IconColor: string;
   time: string;
-  
+
   Url: string;
   lessons?: number; // Total lessons in the module
   included?: boolean; // Is the module included in base course?
@@ -42,6 +44,24 @@ export default function CourseDetail({
   const { id } = use(params);
   // Fetch the course data based on the ID
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
+  const [PronmoCode, setPronmoCode] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("promoCode") || "";
+    }
+    return "";
+  });
+
+  // when page is load then get the course data and promocode from localstorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCode = localStorage.getItem("promoCode");
+      if (storedCode) {
+        setPronmoCode(storedCode);
+      }
+    }
+  }, []);
+
   const getCourses = getCourseWithoutUrls(CoursesData, id);
 
   function parseStudentCount(input: string): string {
@@ -98,12 +118,18 @@ export default function CourseDetail({
     id: getCourses.id,
     title: getCourses.title,
     price: getCourses.salePrice,
+    PromoCodePrice: getCourses.PromoCodePrice,
+    promoCode: getCourses.promoCode,
   };
 
-  const handleOpen = () => {
+  const handleBuyOpen = () => {
     setIsModalOpen(true);
     // Call the function to send email
     localStorage.setItem("courseId", getCourses.id);
+  };
+
+  const handlePronmoCodeOpen = () => {
+    setIsPromoModalOpen(true);
   };
 
   return (
@@ -322,8 +348,11 @@ export default function CourseDetail({
                   <p className="text-blue-100 mb-2">Limited Time Offer</p>
                   <div className="flex items-center justify-center gap-4 mb-3">
                     <span className="text-4xl sm:text-5xl font-black">
-                      {" "}
-                      ₹{getCourses.salePrice}
+                      ₹
+                      {PronmoCode &&
+                      PronmoCode.toUpperCase() === getCourses.promoCode
+                        ? getCourses.salePrice
+                        : getCourses.PromoCodePrice}
                     </span>
                     <span className="text-xl text-blue-200 line-through">
                       ₹{getCourses.price}
@@ -339,10 +368,19 @@ export default function CourseDetail({
                 {/* Enhanced Buy Button */}
                 <button
                   className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-3 mb-6 group cursor-pointer"
-                  onClick={handleOpen}
+                  onClick={handleBuyOpen}
                 >
                   <ShoppingCart className="w-6 h-6 group-hover:animate-bounce" />
                   <span className="text-lg">Enroll Now</span>
+                </button>
+
+                {/* Enhanced Pronmocode Button */}
+                <button
+                  className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-3 mb-6 group cursor-pointer"
+                  onClick={handlePronmoCodeOpen}
+                >
+                  <Disc2Icon className="w-6 h-6 group-hover:animate-bounce" />
+                  <span className="text-lg">Have a Promo Code?</span>
                 </button>
 
                 {/* Money Back Guarantee */}
@@ -378,7 +416,7 @@ export default function CourseDetail({
                   {[
                     {
                       icon: PlayCircle,
-                      text: "40+ hours of HD video",
+                      text: "live trading and sessions recordings",
                       color: "text-red-500",
                     },
                     {
@@ -430,6 +468,13 @@ export default function CourseDetail({
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         course={courseForPayment}
+      />
+      <PromoCodeModal
+        course={courseForPayment}
+        isOpen={isPromoModalOpen}
+        onClose={() => setIsPromoModalOpen(false)}
+        promoCode={PronmoCode}
+        setPromoCode={setPronmoCode}
       />
     </div>
   );

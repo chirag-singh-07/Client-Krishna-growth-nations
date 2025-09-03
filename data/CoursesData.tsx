@@ -83,6 +83,9 @@ export type CoursesDataType = {
   features?: string[]; // What this course includes (videos, resources, etc.)
   guarantee?: string; // e.g., "30-Day Money-Back Guarantee"
   skills?: string[]; // "What you'll master" section
+  PromoCodePrice?: number; // Optional: price before applying promo code
+  promoCode?: string; // Optional: promo code text
+
 
   subCourses?: {
     id: string;
@@ -156,7 +159,7 @@ export const CoursesData: CoursesDataType[] = [
         textColor: getTextColor(),
       },
     ],
-    
+
     rating: getRandomRating(),
     totalReviews: getRandomReviewCount(),
     totalStudents: getRandomStudentCount(),
@@ -245,7 +248,6 @@ export const CoursesData: CoursesDataType[] = [
       "Responsive Design",
       "Web Accessibility",
     ],
-    
   },
 
   {
@@ -276,7 +278,6 @@ export const CoursesData: CoursesDataType[] = [
       "Automation",
       "Monitoring",
     ],
-    
   },
   {
     id: "ios-app-dev",
@@ -305,7 +306,7 @@ export const CoursesData: CoursesDataType[] = [
       "App Navigation",
       "Simulator Testing",
     ],
-    
+
     endLabel: "iOS Developer",
   },
   {
@@ -328,7 +329,7 @@ export const CoursesData: CoursesDataType[] = [
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    
+
     skills: [
       "Game Design Principles",
       "Asset Management",
@@ -366,7 +367,7 @@ export const CoursesData: CoursesDataType[] = [
       "APIs and Web Scraping",
       "Automation Scripts",
     ],
-    
+
     endLabel: "Python Developer",
   },
   {
@@ -396,26 +397,24 @@ export const CoursesData: CoursesDataType[] = [
       "Network Security Basics",
       "Troubleshooting Techniques",
     ],
-    
+
     endLabel: "Network Engineer",
   },
   {
     id: "stock-market-crash-course",
     title: "Stock Market Crash Course",
     smallDescription:
-      "Master stock market basics, technical analysis, trading strategies, and risk management in a practical 4-week crash course.",
-    longDescription: `The Stock Market Crash Course is a focused, hands-on program that teaches you how markets work, how to read charts, identify trends, and execute high-probability trades while protecting your capital. Over 4 weeks you'll learn technical analysis, candlestick patterns, support/resistance, indicators, position sizing, and risk management. The course emphasizes practical strategies for intraday and short-term swing trading with real examples and watchlists. No prior experience required — perfect for beginners who want a fast, effective introduction to trading.
-
-This course includes live demonstrations, downloadable trading templates, and a starter workbook to help you implement strategies immediately.`,
-  time: "4 weeks",
-  level: "beginner",
-  Url: "https://drive.google.com/file/d/1qObxmwhX5uThgtciCUSu7KpyNfnNwSol/view?usp=sharing",
-  price: 1499,
-  salePrice: 899,
-  isFree: true,
-  priceLabel: "Free",
-  priceBadgeColor: "from-green-500 to-green-600",
-  icon: FiTrendingUp,
+      "Master price action, technical analysis, trading strategies, and risk management in a practical 2-week crash course.",
+    longDescription: `The Stock Market Crash Course is a focused, hands-on program that teaches you how markets work, how to read charts, identify trends, and execute high-probability trades while protecting your capital.       Over 2 weeks, you'll master price action, technical analysis, candlestick patterns, support and resistance, indicators, position sizing, and risk management. The course emphasizes practical strategies for intraday and short-term swing trading with real examples. No prior experience is required—perfect for beginners who want a fast, effective introduction to trading. This course includes live demonstrations, downloadable trading templates, and a starter workbook to help you implement strategies immediately.`,
+    time: "2 weeks",
+    level: "intermediate",
+    Url: "https://drive.google.com/file/d/1qObxmwhX5uThgtciCUSu7KpyNfnNwSol/view?usp=sharing",
+    price: 7999 ,
+    salePrice: 899,
+    isFree: true,
+    priceLabel: "Free",
+    priceBadgeColor: "from-green-500 to-green-600",
+    icon: FiTrendingUp,
     category: "Other",
     IconColor: getRandomIconColor(),
     totalReviews: getRandomReviewCount(),
@@ -426,16 +425,19 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Live strategy sessions",
       "Trading templates and workbooks",
       "Practical chart examples",
-  "Risk management templates",
-  "90+ course links",
+      "Risk management templates",
+      "90+ course links",
     ],
     skills: [
       "Technical Analysis",
       "Price Action",
       "Risk Management",
       "Intraday & Swing Strategies",
+      "Weekly QNA and Live Trading",
     ],
-    
+    PromoCodePrice: 3999,
+    promoCode: "GROWTH50",
+
     endLabel: "Trader",
   },
   {
@@ -465,7 +467,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Internet Navigation",
       "Digital Communication",
     ],
-    
+
     endLabel: "Computer User",
   },
   {
@@ -495,7 +497,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "React Hooks",
       "Performance Optimization",
     ],
-    
+
     endLabel: "React Developer",
   },
   {
@@ -525,7 +527,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Exception Handling",
       "File I/O",
     ],
-    
+
     endLabel: "Java Developer",
   },
   {
@@ -548,7 +550,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    
+
     skills: [
       "Java Syntax",
       "OOP Concepts",
@@ -579,7 +581,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    
+
     skills: [
       "HTML/CSS Basics",
       "JavaScript Fundamentals",
@@ -611,7 +613,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    
+
     skills: [
       "Component Architecture",
       "Data Binding",
@@ -641,7 +643,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
     features: getRandomFeatures(),
-    
+
     skills: [
       "ASP .NET Core Fundamentals",
       "MVC Architecture",
@@ -677,7 +679,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Basic Algorithms",
       "Debugging Techniques",
     ],
-    
+
     endLabel: "Junior Developer",
   },
   {
@@ -708,7 +710,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Performance Tracking",
       "User Engagement Techniques",
     ],
-    
+
     endLabel: "ASO Specialist",
   },
   {
@@ -739,7 +741,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Performance Tracking",
       "A/B Testing",
     ],
-    
+
     endLabel: "Facebook Ads Specialist",
     subCourses: [
       {
@@ -804,7 +806,6 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Funnel Strategies",
       "Analytics Fundamentals",
     ],
-    
   },
   {
     title: "Instagram Marketing",
@@ -835,7 +836,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Instagram Ads",
       "Analytics and Insights",
     ],
-    
+
     endLabel: "Instagram Marketing Specialist",
   },
   {
@@ -867,7 +868,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Email Campaigns",
       "Analytics and Reporting",
     ],
-    
+
     endLabel: "Digital Marketing Specialist",
   },
   {
@@ -898,7 +899,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Typography Basics",
       "Asset Creation",
     ],
-    
+
     endLabel: "Branding Specialist",
   },
   {
@@ -929,7 +930,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Budget Management",
       "Performance Tracking",
     ],
-    
+
     endLabel: "Google Ads Specialist",
   },
   {
@@ -959,7 +960,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Analytics and Reporting",
       "Ad Campaign Management",
     ],
-    
+
     endLabel: "Social Media Marketing Specialist",
   },
   {
@@ -989,7 +990,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Automation Techniques",
       "Performance Analytics",
     ],
-    
+
     endLabel: "Email Marketing Specialist",
   },
   {
@@ -1020,7 +1021,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Traffic Generation",
       "Conversion Optimization",
     ],
-    
+
     endLabel: "Affiliate Marketing Specialist",
   },
   {
@@ -1052,7 +1053,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Building Rapport",
       "Closing Techniques",
     ],
-    
+
     endLabel: "Sales Closer",
   },
   {
@@ -1082,7 +1083,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Technical SEO",
       "Analytics and Reporting",
     ],
-    
+
     endLabel: "SEO Specialist",
     subCourses: [
       {
@@ -1148,7 +1149,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Board Structuring",
       "Analytics Tracking",
     ],
-    
+
     endLabel: "Pinterest SEO Specialist",
   },
   {
@@ -1166,7 +1167,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
     longDescription:
       "This course is your gateway to mastering the fundamentals of logo design from the ground up. You’ll learn to brainstorm creative ideas, sketch meaningful symbols, choose the right typography, and use digital tools to bring your vision to life. Whether you’re aiming to design for personal projects or kick-start a freelance journey, this step-by-step training will help you craft logos that are clean, iconic, and unforgettable. No fluff—just hands-on techniques, design principles, and real-world examples to help you build a strong creative foundation.",
     icon: FcWiFiLogo,
-        totalReviews: getRandomReviewCount(),
+    totalReviews: getRandomReviewCount(),
     totalStudents: getRandomStudentCount(),
     rating: getRandomRating(),
     guarantee: getRandomGuarantee(),
@@ -1178,7 +1179,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Color Theory",
       "Digital Design Tools",
     ],
-    
+
     endLabel: "Logo Designer",
   },
   {
@@ -1209,7 +1210,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Color Correction",
       "Graphic Design Fundamentals",
     ],
-    
+
     endLabel: "Photoshop Designer",
   },
   {
@@ -1240,7 +1241,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Color Theory",
       "Illustration Fundamentals",
     ],
-    
+
     endLabel: "Digital Illustrator",
   },
   {
@@ -1270,7 +1271,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Animation Principles",
       "Rendering and Exporting",
     ],
-    
+
     endLabel: "3D Animator",
 
     subCourses: [
@@ -1321,7 +1322,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "3D Modeling Basics",
       "Rendering and Visualization",
     ],
-    
+
     endLabel: "AutoCAD Designer",
   },
   {
@@ -1351,7 +1352,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Color Management",
       "Layout Design Techniques",
     ],
-    
+
     endLabel: "CorelDraw Designer",
     subCourses: [
       {
@@ -1400,7 +1401,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Visual Storytelling",
       "Brand Identity Creation",
     ],
-    
+
     endLabel: "Graphic Designer",
     subCourses: [
       {
@@ -1448,7 +1449,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "SEO Optimization",
       "Audience Engagement",
     ],
-    
+
     endLabel: "YouTube Creator",
   },
   {
@@ -1478,7 +1479,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Sponsorship Strategies",
       "Revenue Diversification",
     ],
-    
+
     endLabel: "YouTube Monetization Specialist",
   },
   {
@@ -1508,7 +1509,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Data-Driven Decisions",
       "Brand Building",
     ],
-    
+
     endLabel: "YouTube Domination Specialist",
   },
   {
@@ -1539,7 +1540,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Content Structuring",
       "Editing and Proofreading",
     ],
-    
+
     endLabel: "Content Writer",
   },
   {
@@ -1569,7 +1570,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "IAM Security Practices",
       "Cloud Architecture Design",
     ],
-    
+
     endLabel: "AWS Certified Practitioner",
     subCourses: [
       {
@@ -1617,9 +1618,9 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Vulnerability Assessment",
       "Penetration Testing",
       "Ethical Hacking Tools",
-  ],
-    
-  endLabel: "Certified Ethical Hacker",
+    ],
+
+    endLabel: "Certified Ethical Hacker",
   },
   {
     title: `Ethical Hacking Course 2025`,
@@ -1648,8 +1649,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Penetration Testing Techniques",
       "Vulnerability Management",
       "Cyber Defense Strategies",
-  ],
-  endLabel: "Certified Ethical Hacker",
+    ],
+    endLabel: "Certified Ethical Hacker",
   },
   {
     title: `Ethical Hacking Training ${new Date().getFullYear()}`,
@@ -1677,8 +1678,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Vulnerability Assessment",
       "Exploit Development",
       "Incident Response",
-  ],
-  endLabel: "Certified Ethical Hacker",
+    ],
+    endLabel: "Certified Ethical Hacker",
   },
   {
     title: ` Up work Master Class ${new Date().getFullYear()}`,
@@ -1706,8 +1707,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Client Communication",
       "Project Management",
       "Freelance Business Growth",
-  ],
-  endLabel: "Upwork Freelancer",
+    ],
+    endLabel: "Upwork Freelancer",
   },
   {
     title: " Upwork Tutorial for Beginners ",
@@ -1735,8 +1736,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Client Communication",
       "Job Search Strategies",
       "Freelance Basics",
-  ],
-  endLabel: "Upwork Beginner Freelancer",
+    ],
+    endLabel: "Upwork Beginner Freelancer",
   },
   {
     title: " Fiverr Course ",
@@ -1764,8 +1765,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Keyword Optimization",
       "Client Communication",
       "Order Management",
-  ],
-  endLabel: "Fiverr Freelancer",
+    ],
+    endLabel: "Fiverr Freelancer",
   },
   {
     title: "Shopify Drop Shipping Course",
@@ -1794,8 +1795,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Marketing Automation",
       "Conversion Optimization",
       "Customer Retention Strategies",
-  ],
-  endLabel: "Shopify Drop Shipping Expert",
+    ],
+    endLabel: "Shopify Drop Shipping Expert",
   },
   {
     title: "Drop Shipping Mastery Course",
@@ -1824,8 +1825,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Marketing Automation",
       "Sales Funnel Optimization",
       "Customer Service Excellence",
-  ],
-  endLabel: "Drop Shipping Business Owner",
+    ],
+    endLabel: "Drop Shipping Business Owner",
   },
   {
     title: "Ecommerce Business",
@@ -1853,8 +1854,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Brand Strategy",
       "Website Optimization",
       "Sales Strategy Development",
-  ],
-  endLabel: "Ecommerce Business Owner",
+    ],
+    endLabel: "Ecommerce Business Owner",
   },
   {
     title: "Video Editing Course",
@@ -1882,8 +1883,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Transitions and Effects",
       "Audio Editing",
       "Color Correction",
-  ],
-  endLabel: "Video Editor",
+    ],
+    endLabel: "Video Editor",
   },
   {
     title: "Tally ERP 9",
@@ -1911,8 +1912,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Inventory Control",
       "GST Compliance",
       "Financial Reporting",
-  ],
-  endLabel: "Tally ERP 9 Specialist",
+    ],
+    endLabel: "Tally ERP 9 Specialist",
   },
   {
     title: "Microsoft Access",
@@ -1941,8 +1942,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Query Writing",
       "Form and Report Design",
       "Data Analysis Techniques",
-  ],
-  endLabel: "Microsoft Access Specialist",
+    ],
+    endLabel: "Microsoft Access Specialist",
   },
   {
     title: "Plumber Training",
@@ -1970,8 +1971,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Water Supply Systems",
       "Drainage and Venting",
       "Leak Repair and Maintenance",
-  ],
-  endLabel: "Certified Plumber",
+    ],
+    endLabel: "Certified Plumber",
   },
   {
     title: "Tailor Master",
@@ -2001,8 +2002,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Sewing Machine Operation",
       "Fitting and Alterations",
       "Garment Finishing Techniques",
-  ],
-  endLabel: "Professional Tailor",
+    ],
+    endLabel: "Professional Tailor",
   },
   {
     title: "Microsoft PowerPoint",
@@ -2030,8 +2031,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Data Visualization",
       "Animation Techniques",
       "Presentation Skills",
-  ],
-  endLabel: "PowerPoint Presentation Specialist",
+    ],
+    endLabel: "PowerPoint Presentation Specialist",
   },
   {
     title: "Auto - Mechanic",
@@ -2059,8 +2060,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Suspension Repair",
       "Electrical Systems",
       "Vehicle Maintenance Techniques",
-  ],
-  endLabel: "Certified Auto Mechanic",
+    ],
+    endLabel: "Certified Auto Mechanic",
   },
   {
     title: "Electrician Course",
@@ -2088,8 +2089,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Load Calculations",
       "Safety Standards",
       "Troubleshooting Techniques",
-  ],
-  endLabel: "Certified Electrician",
+    ],
+    endLabel: "Certified Electrician",
   },
   {
     title: "Mobile Repairing",
@@ -2117,8 +2118,8 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Software Troubleshooting",
       "Soldering Techniques",
       "Mobile Repair Tools",
-  ],
-  endLabel: "Certified Mobile Repair Technician",
+    ],
+    endLabel: "Certified Mobile Repair Technician",
   },
   {
     title: "Communication Mastery Course",
@@ -2147,7 +2148,7 @@ This course includes live demonstrations, downloadable trading templates, and a 
       "Non-Verbal Communication",
       "Conflict Resolution",
       "Public Speaking Techniques",
-  ],
-  endLabel: "Communication Specialist",
+    ],
+    endLabel: "Communication Specialist",
   },
 ];
