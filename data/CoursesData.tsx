@@ -74,6 +74,7 @@ export type CoursesDataType = {
   priceBadgeColor?: string;
   Url: string;
   Url2?: string;
+  feedbackVideo?: string; // Optional feedback video URL
 
   rating?: number; // e.g., 4.9
   totalReviews?: number; // e.g., 12847
@@ -411,6 +412,7 @@ export const CoursesData: CoursesDataType[] = [
     Url: "https://drive.google.com/file/d/1qObxmwhX5uThgtciCUSu7KpyNfnNwSol/view?usp=sharing",
     price: 7999 ,
     salePrice: 899,
+    feedbackVideo:"https://youtube.com/shorts/wFKhNToDDJ4?si=g5iKPlgHIv8c4HOL",
     isFree: true,
     priceLabel: "Free",
     priceBadgeColor: "from-green-500 to-green-600",
