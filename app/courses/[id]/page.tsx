@@ -385,12 +385,22 @@ export default function CourseDetail({
                 <div className="text-center">
                   <p className="text-blue-100 mb-2">Limited Time Offer</p>
                   <div className="flex items-center justify-center gap-4 mb-3">
-                    <span className="text-4xl sm:text-5xl font-black">
+                    {/* <span className="text-4xl sm:text-5xl font-black">
                       ₹
                       {PronmoCode &&
                       PronmoCode.toUpperCase() === getCourses.promoCode
                         ? getCourses.salePrice
                         : getCourses.PromoCodePrice}
+                    </span> */}
+                    <span className="text-4xl sm:text-5xl font-black">
+                      ₹
+                      {getCourses.promoCode
+                        ? PronmoCode &&
+                          PronmoCode.toUpperCase() === getCourses.promoCode
+                          ? getCourses.salePrice // applied promo
+                          : getCourses.PromoCodePrice // not applied yet
+                        : getCourses.salePrice // no promoCode for course
+                      }
                     </span>
                     <span className="text-xl text-blue-200 line-through">
                       ₹{getCourses.price}
