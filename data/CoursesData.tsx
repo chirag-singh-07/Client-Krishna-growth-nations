@@ -87,7 +87,6 @@ export type CoursesDataType = {
   PromoCodePrice?: number; // Optional: price before applying promo code
   promoCode?: string; // Optional: promo code text
 
-
   subCourses?: {
     id: string;
     title: string;
@@ -410,9 +409,9 @@ export const CoursesData: CoursesDataType[] = [
     time: "2 weeks",
     level: "intermediate",
     Url: "https://drive.google.com/file/d/1qObxmwhX5uThgtciCUSu7KpyNfnNwSol/view?usp=sharing",
-    price: 7999 ,
+    price: 7999,
     salePrice: 899,
-    feedbackVideo:"https://youtube.com/shorts/wFKhNToDDJ4?si=g5iKPlgHIv8c4HOL",
+    feedbackVideo: "https://www.youtube.com/embed/wFKhNToDDJ4",
     isFree: true,
     priceLabel: "Free",
     priceBadgeColor: "from-green-500 to-green-600",

@@ -133,7 +133,7 @@ export default function PromoCodeModal({
                 <span>
                   Promo applied! Final price:{" "}
                   <span className="font-bold text-green-700">
-                    ₹{course.price - 200}
+                    ₹{course.price}
                   </span>
                 </span>
               </div>

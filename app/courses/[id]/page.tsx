@@ -339,19 +339,38 @@ export default function CourseDetail({
 
               {/* Feedback Video Section */}
             </div>
-            {getCourses?.feedbackVideo && (
+            {/* {getCourses?.feedbackVideo && (
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/30 shadow-xl">
                 <h3 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                   <div className="w-1 h-8 bg-gradient-to-b from-blue-600 to-purple-600 rounded-full"></div>
                   Student Feedback
                 </h3>
-                <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+                <div className="aspect-w-9 aspect-h-16 rounded-xl overflow-hidden shadow-lg">
                   <iframe
                     src={getCourses.feedbackVideo}
                     title="Student Feedback"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
+                  ></iframe>
+                </div>
+              </div>
+            )} */}
+            {getCourses?.feedbackVideo && (
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/30 shadow-xl">
+                <h3 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                  <div className="w-1 h-8 bg-gradient-to-b from-blue-600 to-purple-600 rounded-full"></div>
+                  Student Feedback
+                </h3>
+
+                {/* Force proper height for shorts */}
+                <div className="w-full max-w-md mx-auto rounded-xl overflow-hidden shadow-lg">
+                  <iframe
+                    src={getCourses.feedbackVideo}
+                    title="Student Feedback"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-[500px] rounded-xl"
                   ></iframe>
                 </div>
               </div>
@@ -435,7 +454,7 @@ export default function CourseDetail({
                   {[
                     {
                       icon: PlayCircle,
-                      text: "live trading and sessions recordings",
+                      text: "Live trading and sessions recordings",
                       color: "text-red-500",
                     },
                     {
