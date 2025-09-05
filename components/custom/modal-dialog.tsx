@@ -54,7 +54,7 @@ export default function ModalDialog({
 
   const handleConfirm = async () => {
     setCheckBtn(true);
-    const win = window as any;
+    const win = window;
     if (!win.Razorpay) {
       alert("Payment system not ready. Please refresh and try again.");
       return;
