@@ -111,8 +111,9 @@ export default function ModalDialog({
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
         amount: d.order?.amount ?? course.price * 100,
         currency: "INR",
-        name: "Growth Nation",
-        description: course.title,
+        name: "Growth Nation", // ✅ Your brand name
+        description: course.title, // ✅ Course name on checkout
+        image: "/logo.png", // ✅ Your logo (keep in /public folder)
         order_id: d.order?.id,
         redirect: true, // ✅ forces redirect instead of popup (fix for in-app browsers)
         handler: function (response: {
@@ -131,8 +132,12 @@ export default function ModalDialog({
           email: userData?.email as string,
           contact: (userData?.phone as string) || undefined,
         },
+        notes: {
+          course: course.title, // ✅ metadata (optional)
+          customer_email: userData?.email,
+        },
         theme: {
-          color: "#6366f1",
+          color: "#6366f1", // ✅ brand color
         },
         modal: {
           ondismiss: function () {
