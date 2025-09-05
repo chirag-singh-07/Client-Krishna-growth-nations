@@ -54,6 +54,11 @@ export default function ModalDialog({
 
   const handleConfirm = async () => {
     setCheckBtn(true);
+    const win = window as any;
+    if (!win.Razorpay) {
+      alert("Payment system not ready. Please refresh and try again.");
+      return;
+    }
     // support a local mock mode for testing without real payments
     const isMock = process.env.NEXT_PUBLIC_RAZORPAY_MOCK === "1";
     if (isMock) {
@@ -155,16 +160,16 @@ export default function ModalDialog({
       }
       const razor = new Razor(options as unknown);
       razor.open();
-    //   const razor = new Razor(options as unknown);
+      //   const razor = new Razor(options as unknown);
 
-    //   // force system browser redirect
-    //   if (options.redirect) {
-    //     // Razorpay hosted checkout URL
-    //     const paymentUrl = `https://api.razorpay.com/v1/checkout/embedded?order_id=${options.order_id}&key_id=${options.key}`;
-    //     window.location.href = paymentUrl; // ✅ always system browser
-    //   } else {
-    //     razor.open();
-    //   }
+      //   // force system browser redirect
+      //   if (options.redirect) {
+      //     // Razorpay hosted checkout URL
+      //     const paymentUrl = `https://api.razorpay.com/v1/checkout/embedded?order_id=${options.order_id}&key_id=${options.key}`;
+      //     window.location.href = paymentUrl; // ✅ always system browser
+      //   } else {
+      //     razor.open();
+      //   }
     } catch (error) {
       console.error("Payment failed:", error);
       alert("Something went wrong. Try again.");
