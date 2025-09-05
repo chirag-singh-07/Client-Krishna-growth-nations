@@ -84,7 +84,9 @@ export default function ModalDialog({
       } catch {
         // non-json response
         const text = await res.text();
-        throw new Error(`Razorpay API returned non-JSON: ${res.status} ${text}`);
+        throw new Error(
+          `Razorpay API returned non-JSON: ${res.status} ${text}`
+        );
       }
 
       if (!res.ok) {
@@ -97,7 +99,11 @@ export default function ModalDialog({
         ? JSON.parse(storedUser)
         : { name: "Johan", email: "johan@gmail.com" };
 
-      type RazorpayOrder = { order?: { amount?: number; id?: string }; error?: string; message?: string };
+      type RazorpayOrder = {
+        order?: { amount?: number; id?: string };
+        error?: string;
+        message?: string;
+      };
       const d = data as unknown as RazorpayOrder;
 
       // Step 2: Razorpay options
@@ -108,6 +114,7 @@ export default function ModalDialog({
         name: "Growth Nation",
         description: course.title,
         order_id: d.order?.id,
+        redirect: true, // ✅ forces redirect instead of popup (fix for in-app browsers)
         handler: function (response: {
           razorpay_payment_id: string;
           razorpay_order_id: string;
@@ -134,13 +141,25 @@ export default function ModalDialog({
         },
       };
 
-      const win = window as unknown as { Razorpay?: { new (opts: unknown): { open: () => void } } };
+      const win = window as unknown as {
+        Razorpay?: { new (opts: unknown): { open: () => void } };
+      };
       const Razor = win.Razorpay;
       if (!Razor) {
         throw new Error("Razorpay SDK not available");
       }
+      // const razor = new Razor(options as unknown);
+      // razor.open();
       const razor = new Razor(options as unknown);
-      razor.open();
+
+      // force system browser redirect
+      if (options.redirect) {
+        // Razorpay hosted checkout URL
+        const paymentUrl = `https://api.razorpay.com/v1/checkout/embedded?order_id=${options.order_id}&key_id=${options.key}`;
+        window.location.href = paymentUrl; // ✅ always system browser
+      } else {
+        razor.open();
+      }
     } catch (error) {
       console.error("Payment failed:", error);
       alert("Something went wrong. Try again.");
@@ -276,7 +295,11 @@ export default function ModalDialog({
 
               <button
                 onClick={handleContinue}
-                disabled={!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()}
+                disabled={
+                  !formData.name.trim() ||
+                  !formData.email.trim() ||
+                  !formData.phone.trim()
+                }
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transform cursor-pointer"
               >
                 Continue to Next Step
