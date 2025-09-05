@@ -115,7 +115,7 @@ export default function ModalDialog({
         description: course.title, // ✅ Course name on checkout
         image: "/logo.png", // ✅ Your logo (keep in /public folder)
         order_id: d.order?.id,
-        redirect: true, // ✅ forces redirect instead of popup (fix for in-app browsers)
+        // redirect: true, // ✅ forces redirect instead of popup (fix for in-app browsers)
         handler: function (response: {
           razorpay_payment_id: string;
           razorpay_order_id: string;
@@ -153,18 +153,18 @@ export default function ModalDialog({
       if (!Razor) {
         throw new Error("Razorpay SDK not available");
       }
-      // const razor = new Razor(options as unknown);
-      // razor.open();
       const razor = new Razor(options as unknown);
+      razor.open();
+    //   const razor = new Razor(options as unknown);
 
-      // force system browser redirect
-      if (options.redirect) {
-        // Razorpay hosted checkout URL
-        const paymentUrl = `https://api.razorpay.com/v1/checkout/embedded?order_id=${options.order_id}&key_id=${options.key}`;
-        window.location.href = paymentUrl; // ✅ always system browser
-      } else {
-        razor.open();
-      }
+    //   // force system browser redirect
+    //   if (options.redirect) {
+    //     // Razorpay hosted checkout URL
+    //     const paymentUrl = `https://api.razorpay.com/v1/checkout/embedded?order_id=${options.order_id}&key_id=${options.key}`;
+    //     window.location.href = paymentUrl; // ✅ always system browser
+    //   } else {
+    //     razor.open();
+    //   }
     } catch (error) {
       console.error("Payment failed:", error);
       alert("Something went wrong. Try again.");
