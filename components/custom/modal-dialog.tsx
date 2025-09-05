@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X, Mail, User, CheckCircle, Phone } from "lucide-react";
 import { handleSendCourseEmail } from "@/utils/sendEmail";
 
@@ -30,6 +30,16 @@ export default function ModalDialog({
   const [checkBtn, setCheckBtn] = useState(false); // <-- New state
   // const courseId = localStorage.getItem("courseId");
   // console.log("Course ID from localStorage:", courseId);
+  const [razorpayReady, setRazorpayReady] = useState(false);
+  useEffect(() => {
+    const checkRazorpay = setInterval(() => {
+      if (typeof window !== "undefined" && window.Razorpay) {
+        setRazorpayReady(true);
+        clearInterval(checkRazorpay);
+      }
+    }, 300);
+    return () => clearInterval(checkRazorpay);
+  }, []);
 
   const handleInputChange = (
     field: "name" | "email" | "phone",
@@ -54,9 +64,8 @@ export default function ModalDialog({
 
   const handleConfirm = async () => {
     setCheckBtn(true);
-    const win = window;
-    if (!win.Razorpay) {
-      alert("Payment system not ready. Please refresh and try again.");
+    if (!razorpayReady) {
+      alert("Payment system is still loading. Please wait a moment.");
       return;
     }
     // support a local mock mode for testing without real payments
