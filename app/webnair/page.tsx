@@ -40,22 +40,7 @@ export default function MasterclassPage() {
     })();
   }, []);
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {  
-    e.preventDefault();
-    const successCard = document.getElementById("successCard");
-    const joinLink = document.getElementById("joinLink");
-    const openLink = document.getElementById("openLink");
-    if (successCard) {
-      successCard.classList.remove("hidden");
-    }
-    const link = "https://example.com/join"; // sample join link
-    if (joinLink) {
-      joinLink.textContent = link;
-    }
-    if (openLink) {
-      (openLink as HTMLAnchorElement).href = link;
-    }
-  };
+
 
   return (
     <div className="antialiased" style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", background: "#0b1220", color: "#e6eef7" }}>
