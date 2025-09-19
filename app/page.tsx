@@ -40,11 +40,13 @@ const HomePage = () => {
       // try immediate scroll; if not present, retry a few times to allow layout to finish
       let attempts = 0;
       const maxAttempts = 6; // ~1.8s total
-  const tryScroll = () => {
+      const tryScroll = () => {
         attempts += 1;
         const el = document.getElementById(id);
         // eslint-disable-next-line no-console
-        console.debug(`home: tryScroll attempt=${attempts} id=${id} found=${!!el}`);
+        console.debug(
+          `home: tryScroll attempt=${attempts} id=${id} found=${!!el}`
+        );
         if (el) {
           el.scrollIntoView({ behavior: "smooth" });
           return true;
@@ -59,7 +61,7 @@ const HomePage = () => {
         }, 300);
         return () => clearInterval(interval);
       }
-      } catch {
+    } catch {
       // ignore in SSR or if access denied
     }
   }, []);
@@ -166,36 +168,77 @@ const HomePage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold text-purple-800 mb-6 flex items-center gap-2 justify-center">
-              <span role="img" aria-label="check"></span> FREE Live Webinar: What I Learned Over the Years
+              <span role="img" aria-label="check"></span> FREE Live Webinar:
+              What I Learned Over the Years
             </h2>
             <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4 text-gray-700 text-lg mb-6 flex-wrap justify-center">
-              <span className="flex items-center gap-2 justify-center"><span role="img" aria-label="calendar">📅</span> <span className="font-semibold">Date:</span> [Insert Date]</span>
-              <span className="flex items-center gap-2 justify-center"><span role="img" aria-label="clock">⏰</span> <span className="font-semibold">Time:</span> [Insert Time]</span>
-              <span className="flex items-center gap-2 justify-center"><span role="img" aria-label="globe">🌐</span> Join from your phone/laptop</span>
+              <span className="flex items-center gap-2 justify-center">
+                <span role="img" aria-label="calendar">
+                  📅
+                </span>{" "}
+                <span className="font-semibold">Date:</span> [Insert Date]
+              </span>
+              <span className="flex items-center gap-2 justify-center">
+                <span role="img" aria-label="clock">
+                  ⏰
+                </span>{" "}
+                <span className="font-semibold">Time:</span> [Insert Time]
+              </span>
+              <span className="flex items-center gap-2 justify-center">
+                <span role="img" aria-label="globe">
+                  🌐
+                </span>{" "}
+                Join from your phone/laptop
+              </span>
             </div>
-            <p className="font-semibold text-purple-700 mb-2 text-xl">Here’s what you’ll learn inside:</p>
+            <p className="font-semibold text-purple-700 mb-2 text-xl">
+              Here’s what you’ll learn inside:
+            </p>
             <ul className="text-gray-700 text-left space-y-2 max-w-2xl mx-auto mb-6 text-lg">
-              <li className="flex items-center gap-2"><span role="img" aria-label="check">✔</span> Basics of Stock Market (Beginner-Friendly)</li>
-              <li className="flex items-center gap-2"><span role="img" aria-label="check">✔</span> Proven Intraday Trading Strategy</li>
-              <li className="flex items-center gap-2"><span role="img" aria-label="check">✔</span> Short-Term Swing Trading Strategy for consistent profits</li>
-              <li className="flex items-center gap-2"><span role="img" aria-label="check">✔</span> Risk Management to protect your capital</li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="check">
+                  ✔
+                </span>{" "}
+                Basics of Stock Market (Beginner-Friendly)
+              </li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="check">
+                  ✔
+                </span>{" "}
+                Proven Intraday Trading Strategy
+              </li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="check">
+                  ✔
+                </span>{" "}
+                Short-Term Swing Trading Strategy for consistent profits
+              </li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="check">
+                  ✔
+                </span>{" "}
+                Risk Management to protect your capital
+              </li>
             </ul>
             <div className="bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200 rounded-xl p-4 mb-6 flex items-center gap-2 justify-center text-lg">
               <span className="font-semibold text-pink-700">🎁 BONUS:</span>
-              <span className="text-gray-700">Free trading plan template and E-book for all attendees!</span>
+              <span className="text-gray-700">
+                Free trading plan template and E-book for all attendees!
+              </span>
             </div>
-            <p className="text-pink-700 font-semibold mb-6 text-lg">🔥 Limited Seats! Don’t miss this opportunity to learn from real experience (and save years of trial & error).</p>
+            <p className="text-pink-700 font-semibold mb-6 text-lg">
+              🔥 Limited Seats! Don’t miss this opportunity to learn from real
+              experience (and save years of trial & error).
+            </p>
 
             <a
-              href="https://whatsapp.com/channel/0029VbAvgYaAojYq92wzif3f"
+              href="../masterclass.html"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-xl px-10 py-5 rounded-lg shadow-lg transition-all duration-200 text-center rounded-lg"
             >
               👉 Click here to Register NOW
             </a>
-
-
           </div>
         </div>
       </section>
@@ -208,7 +251,8 @@ const HomePage = () => {
               Choose Your Tech Journey
             </h2>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              From beginner-friendly introductions to advanced specializations, find the perfect course to accelerate your tech career.
+              From beginner-friendly introductions to advanced specializations,
+              find the perfect course to accelerate your tech career.
             </p>
           </div>
 
@@ -217,7 +261,7 @@ const HomePage = () => {
               <Card
                 key={index}
                 className="group border-0 shadow-md p-2 m-0 transition-all duration-300 transform hover:scale-102 hover:-translate-y-1 hover:shadow-[0_12px_36px_0_rgba(0,0,0,0.28)] cursor-pointer"
-                style={{ minHeight: '180px' }}
+                style={{ minHeight: "180px" }}
               >
                 <CardHeader className="space-y-1 p-2 pb-0">
                   <div
@@ -233,7 +277,9 @@ const HomePage = () => {
                         {course.duration}
                       </div>
                     </div>
-                    <CardTitle className="text-base font-semibold">{course.title}</CardTitle>
+                    <CardTitle className="text-base font-semibold">
+                      {course.title}
+                    </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="p-2 pt-0">
@@ -285,34 +331,43 @@ const HomePage = () => {
             </div>
 
             <div className="relative">
-                <div className="rounded-2xl shadow-2xl overflow-hidden">
-                  {!loadVideo ? (
-                    <div
-                      className="w-full h-[500px] rounded-2xl bg-black flex items-center justify-center cursor-pointer"
-                      onClick={() => setLoadVideo(true)}
-                      role="button"
-                      aria-label="Load video"
-                    >
-                      <div className="text-white text-center">
-                        <div className="mb-4 text-2xl font-semibold">Click to load video</div>
-                        <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center">
-                          <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
+              <div className="rounded-2xl shadow-2xl overflow-hidden">
+                {!loadVideo ? (
+                  <div
+                    className="w-full h-[500px] rounded-2xl bg-black flex items-center justify-center cursor-pointer"
+                    onClick={() => setLoadVideo(true)}
+                    role="button"
+                    aria-label="Load video"
+                  >
+                    <div className="text-white text-center">
+                      <div className="mb-4 text-2xl font-semibold">
+                        Click to load video
+                      </div>
+                      <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-8 h-8 text-white"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
                       </div>
                     </div>
-                  ) : (
-                    <iframe
-                      src="https://drive.google.com/file/d/1Kx8bZVNuBAyHR-lxfvNW35lXnR8PvnkY/preview"
-                      width="600"
-                      height="500"
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen
-                      title="Learning Experience Video"
-                      className="w-full h-[500px] rounded-2xl"
-                      style={{ background: "#000" }}
-                    ></iframe>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <iframe
+                    src="https://drive.google.com/file/d/1Kx8bZVNuBAyHR-lxfvNW35lXnR8PvnkY/preview"
+                    width="600"
+                    height="500"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="Learning Experience Video"
+                    className="w-full h-[500px] rounded-2xl"
+                    style={{ background: "#000" }}
+                  ></iframe>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -344,26 +399,28 @@ const HomePage = () => {
                     ))}
                   </div>
                   <p className="text-gray-600 italic">{`"${testimonial.content}"`}</p>
-                        <div className="flex items-center space-x-3">
-                          <div
-                            className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold"
-                            style={{ background: `linear-gradient(135deg,#6EE7B7,#10B981)` }}
-                          >
-                            {testimonial.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .slice(0, 2)
-                              .join("")}
-                          </div>
-                          <div>
-                            <p className="font-semibold text-gray-900">
-                              {testimonial.name}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                              {testimonial.role}
-                            </p>
-                          </div>
-                        </div>
+                  <div className="flex items-center space-x-3">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold"
+                      style={{
+                        background: `linear-gradient(135deg,#6EE7B7,#10B981)`,
+                      }}
+                    >
+                      {testimonial.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .slice(0, 2)
+                        .join("")}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        {testimonial.role}
+                      </p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -396,7 +453,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-  </div>
+    </div>
   );
 };
 
